@@ -20,6 +20,7 @@ export default function PartnersSection() {
         stagger: 0.08,
         duration: 0.5,
         ease: "power2.out",
+        onComplete: () => gsap.set("[data-partner-logo]", { clearProps: "transform,opacity" }),
         scrollTrigger: { trigger: rootRef.current, start: "top 85%", once: true },
       });
     }, rootRef);

@@ -15,6 +15,7 @@ export default function TrustSection() {
         stagger: 0.06,
         duration: 0.6,
         ease: "power2.out",
+        onComplete: () => gsap.set("[data-trust-badge]", { clearProps: "transform,opacity" }),
         scrollTrigger: { trigger: rootRef.current, start: "top 75%", once: true },
       });
     }, rootRef);

@@ -15,6 +15,7 @@ export default function ProofSection() {
         y: 24,
         duration: 0.7,
         ease: "power2.out",
+        onComplete: () => gsap.set("[data-proof-reveal]", { clearProps: "transform,opacity" }),
         scrollTrigger: { trigger: rootRef.current, start: "top 70%", once: true },
       });
     }, rootRef);

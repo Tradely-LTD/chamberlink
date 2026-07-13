@@ -16,6 +16,7 @@ export default function MandateAct() {
         stagger: 0.1,
         duration: 0.8,
         ease: "power3.out",
+        onComplete: () => gsap.set("[data-mandate-reveal]", { clearProps: "transform,opacity" }),
         scrollTrigger: {
           trigger: rootRef.current,
           start: "top 70%",

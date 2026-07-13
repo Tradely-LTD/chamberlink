@@ -13,11 +13,18 @@ export default function CinematicHero() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const revealTargets =
+        "[data-hero-eyebrow],[data-hero-line],[data-hero-sub],[data-hero-cta],[data-hero-stat]";
       tl.from("[data-hero-eyebrow]", { opacity: 0, y: 16, duration: 0.6 })
         .from("[data-hero-line]", { opacity: 0, y: 40, stagger: 0.12, duration: 0.9 }, "-=0.3")
         .from("[data-hero-sub]", { opacity: 0, y: 20, duration: 0.7 }, "-=0.5")
         .from("[data-hero-cta]", { opacity: 0, y: 16, stagger: 0.1, duration: 0.6 }, "-=0.4")
-        .from("[data-hero-stat]", { opacity: 0, y: 12, stagger: 0.08, duration: 0.5 }, "-=0.3");
+        .from("[data-hero-stat]", { opacity: 0, y: 12, stagger: 0.08, duration: 0.5 }, "-=0.3")
+        // Belt-and-braces: strip GSAP's inline transform/opacity once the
+        // entrance settles so a React Strict-Mode double-effect (dev only)
+        // can never leave an element stuck mid-tween (e.g. a CTA button
+        // frozen at translateY(16) instead of resting at 0).
+        .set(revealTargets, { clearProps: "transform,opacity" });
     }, rootRef);
     return () => ctx.revert();
   }, []);

@@ -15,6 +15,7 @@ export default function ProblemAct() {
         stagger: 0.1,
         duration: 0.8,
         ease: "power3.out",
+        onComplete: () => gsap.set("[data-problem-reveal]", { clearProps: "transform,opacity" }),
         scrollTrigger: {
           trigger: rootRef.current,
           start: "top 70%",

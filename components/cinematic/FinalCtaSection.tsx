@@ -17,6 +17,7 @@ export default function FinalCtaSection() {
         stagger: 0.08,
         duration: 0.7,
         ease: "power2.out",
+        onComplete: () => gsap.set("[data-cta-reveal]", { clearProps: "transform,opacity" }),
         scrollTrigger: { trigger: rootRef.current, start: "top 75%", once: true },
       });
     }, rootRef);
