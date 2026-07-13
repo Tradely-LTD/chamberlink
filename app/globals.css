@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  /* Chamberlink brand — all-green system, see lib/theme.ts for the JS-side tokens */
+  --color-ink: #0a1f16;
+  --color-ink-deep: #06140d;
+  --color-emerald: #145c42;
+  --color-emerald-bright: #34c28d;
+  --color-paper: #f2f6f0;
+  --color-paper-deep: #e7f0e3;
+
+  --font-fraunces: "Fraunces", Georgia, serif;
+  --font-public-sans: "Public Sans", system-ui, sans-serif;
+  --font-ibm-mono: "IBM Plex Mono", monospace;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
