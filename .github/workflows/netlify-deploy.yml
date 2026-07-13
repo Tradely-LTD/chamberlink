@@ -1,0 +1,36 @@
+name: Deploy to Netlify
+
+# Fallback path only — if this repo is connected to Netlify via its native
+# GitHub integration (Netlify dashboard -> Add new site -> Import from Git),
+# Netlify deploys on every push to main automatically and this workflow is
+# redundant (disable/delete it in that case). Keep this only if Netlify's
+# GitHub App can't be installed on this org and a token-based deploy is
+# needed instead.
+#
+# Requires two repo secrets (Settings -> Secrets and variables -> Actions):
+#   NETLIFY_AUTH_TOKEN — a personal access token from Netlify (User settings -> Applications)
+#   NETLIFY_SITE_ID    — the target site's API ID (Site settings -> General -> Site details)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Deploy to Netlify
+        run: npx netlify-cli deploy --build --prod
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

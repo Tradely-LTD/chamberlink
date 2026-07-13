@@ -33,9 +33,9 @@ export const seo = {
 export const nav = {
   wordmark: "Chamberlink",
   links: [
-    { label: "Platform", href: "#platform" },
-    { label: "NACCIMA Mandate", href: "#mandate" },
-    { label: "Proof", href: "#proof" },
+    { label: "Platform", href: "/#platform" },
+    { label: "NACCIMA Mandate", href: "/#mandate" },
+    { label: "Proof", href: "/#proof" },
     { label: "Contact", href: "/contact" },
   ],
   ctaSecondary: { label: "Chamber Login", href: process.env.NEXT_PUBLIC_PORTAL_URL ?? "http://localhost:3000" },
@@ -50,7 +50,7 @@ export const hero = {
   subhead:
     "Chamberlink carries Nigeria's state chambers of commerce into the digital economy — built in partnership with NACCIMA, the national body mandated to issue Certificates of Origin recognized by the international community. Once onboarded, your chamber runs independently: manage your own members, generate new revenue, and give them real value from day one.",
   ctaPrimary: { label: "Request Onboarding", href: "/contact" },
-  ctaSecondary: { label: "Explore the Platform", href: "#platform" },
+  ctaSecondary: { label: "Explore the Platform", href: "/#platform" },
   scrollCue: "Scroll to explore the platform",
   stats: [
     { label: "Chamber modules", value: "5" },
@@ -216,6 +216,23 @@ export const finalCta = {
   ctaSecondary: { label: "Talk to Our Team", href: "mailto:partnerships@chamberlink.ng" },
 };
 
+export const ONBOARDING_EMAIL = "partnerships@chamberlink.ng";
+
+export const contactPage = {
+  eyebrow: "REQUEST ONBOARDING",
+  headline: "Tell us about your chamber.",
+  body: "Fill this in and it opens a pre-filled email to our partnerships team — we'll follow up to walk through onboarding, from NACCIMA accreditation to your first live member.",
+  fallbackNote: `Prefer to email directly? Reach us at ${ONBOARDING_EMAIL}`,
+};
+
+export const NIGERIA_STATES = [
+  "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
+  "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "FCT (Abuja)", "Gombe",
+  "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos",
+  "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto",
+  "Taraba", "Yobe", "Zamfara",
+];
+
 export const footer = {
   description:
     "Chamberlink onboards Nigeria's state chambers of commerce onto one platform, in partnership with NACCIMA. Operated by Tradely LTD.",
@@ -223,16 +240,16 @@ export const footer = {
     {
       title: "Platform",
       links: [
-        { label: "Membership & Governance", href: "#platform" },
-        { label: "Trade Facilitation", href: "#platform" },
-        { label: "Business Intelligence", href: "#platform" },
-        { label: "Market Access", href: "#platform" },
+        { label: "Membership & Governance", href: "/#platform" },
+        { label: "Trade Facilitation", href: "/#platform" },
+        { label: "Business Intelligence", href: "/#platform" },
+        { label: "Market Access", href: "/#platform" },
       ],
     },
     {
       title: "Company",
       links: [
-        { label: "NACCIMA Mandate", href: "#mandate" },
+        { label: "NACCIMA Mandate", href: "/#mandate" },
         { label: "KACCIMA Tenant Site", href: "https://kaccima.chamberlink.ng" },
         { label: "Contact", href: "/contact" },
       ],
