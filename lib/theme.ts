@@ -1,7 +1,7 @@
 /**
  * Chamberlink brand tokens (product marketing site).
  * All-green system — deliberately no gold/brass and no true black, per brand
- * direction. Distinct from the KACCIMA tenant green so the two never collide.
+ * direction. Distinct from the NACCIMA tenant green so the two never collide.
  */
 
 export const brand = {

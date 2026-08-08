@@ -4,7 +4,7 @@
  * platform, in partnership with NACCIMA — the national body mandated to issue
  * Certificates of Origin recognized by the international community. Once onboarded,
  * a state chamber runs its own instance with full autonomy over its members and
- * modules. KACCIMA is the first chamber onboarded, not the brand.
+ * modules. NACCIMA is the first chamber onboarded, not the brand.
  *
  * SEO targets woven into this copy:
  * primary   — "chamber of commerce software Nigeria", "state chamber of commerce onboarding"
@@ -200,12 +200,12 @@ export const partners = {
 
 export const proof = {
   eyebrow: "LIVE IN PRODUCTION",
-  headline: "KACCIMA was the first state chamber onboarded.",
+  headline: "NACCIMA was the first state chamber onboarded.",
   body:
-    "The Kano Chamber of Commerce, Industry, Mines & Agriculture — established in 1921 — was the first chamber carried onto Chamberlink. Members renew dues, apply for NACCIMA-recognized Certificates of Origin, and reserve trade fair booths entirely online, while KACCIMA runs its own instance with full autonomy over its members and revenue.",
+    "The Kano Chamber of Commerce, Industry, Mines & Agriculture — established in 1921 — was the first chamber carried onto Chamberlink. Members renew dues, apply for NACCIMA-recognized Certificates of Origin, and reserve trade fair booths entirely online, while NACCIMA runs its own instance with full autonomy over its members and revenue.",
   partnerNote:
     "NACCIMA's national mandate is what makes every certificate issued through Chamberlink recognized internationally — the same mandate that's available to your state chamber once onboarded.",
-  cta: { label: "See the KACCIMA tenant site", href: "https://kaccima.chamberlink.ng" },
+  cta: { label: "See the NACCIMA tenant site", href: "https://naccima.chamberlink.ng" },
 };
 
 export const finalCta = {
@@ -250,7 +250,7 @@ export const footer = {
       title: "Company",
       links: [
         { label: "NACCIMA Mandate", href: "/#mandate" },
-        { label: "KACCIMA Tenant Site", href: "https://kaccima.chamberlink.ng" },
+        { label: "NACCIMA Tenant Site", href: "https://naccima.chamberlink.ng" },
         { label: "Contact", href: "/contact" },
       ],
     },

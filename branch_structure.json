@@ -1,0 +1,18 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "chore/naccima-rebrand",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "chore/naccima-rebrand": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "chore/naccima-rebrand",
+    "origin"
+  ]
+}
