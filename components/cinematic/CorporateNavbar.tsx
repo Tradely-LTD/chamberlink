@@ -5,7 +5,12 @@ import Link from "next/link";
 import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
 import { nav } from "@/lib/content/homeCopy";
 
-export default function CorporateNavbar() {
+interface CorporateNavbarProps {
+  /** Set when the page opens on a dark hero, so the unscrolled navbar reads light-on-dark. */
+  darkHero?: boolean;
+}
+
+export default function CorporateNavbar({ darkHero = false }: CorporateNavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
@@ -34,10 +39,10 @@ export default function CorporateNavbar() {
     };
   }, [loginOpen]);
 
-  // The hero (the only section behind a transparent navbar) is dark, so the
-  // unscrolled state reads light-on-dark. Every section below it is
-  // light-mode, so scrolling flips the bar to a solid light surface.
-  const dark = !scrolled;
+  // Only pages with a dark hero (currently just "/") should render the
+  // unscrolled navbar light-on-dark; everywhere else the hero is light, so
+  // the bar must open dark-on-light or the wordmark/links are invisible.
+  const dark = darkHero && !scrolled;
 
   return (
     <nav

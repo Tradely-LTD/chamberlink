@@ -10,7 +10,7 @@ import CorporateFooter from "@/components/cinematic/CorporateFooter";
 export default function Home() {
   return (
     <>
-      <CorporateNavbar />
+      <CorporateNavbar darkHero />
       <main>
         {/* Dark section 1/1 — hero, three.js trade network. Everything below
             is light-mode, per the site's "Trust & Authority" system. */}
