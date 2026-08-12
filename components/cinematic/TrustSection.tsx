@@ -23,25 +23,25 @@ export default function TrustSection() {
   }, []);
 
   return (
-    <section ref={rootRef} className="bg-[#f2f6f0] px-6 py-28 md:px-12">
+    <section ref={rootRef} className="bg-background px-6 py-28 md:px-12">
       <div className="mx-auto max-w-[1400px]">
         <div className="max-w-2xl">
-          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-[#12503f]">
+          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-accent-ink">
             {trust.eyebrow}
           </span>
-          <h2 className="font-[family-name:var(--font-fraunces)] text-3xl font-medium leading-tight text-[#0f2318] md:text-5xl">
+          <h2 className="font-[family-name:var(--font-fraunces)] text-3xl font-medium leading-tight text-foreground md:text-5xl">
             {trust.headline}
           </h2>
-          <p className="mt-6 font-[family-name:var(--font-public-sans)] text-base leading-relaxed text-[#4c5c4e]">
+          <p className="mt-6 font-[family-name:var(--font-public-sans)] text-base leading-relaxed text-muted-foreground">
             {trust.body}
           </p>
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-[#d9e5d3] bg-[#d9e5d3] sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {trust.badges.map((badge) => (
-            <div key={badge.label} data-trust-badge className="bg-[#f2f6f0] p-8">
-              <h3 className="font-[family-name:var(--font-fraunces)] text-lg text-[#0f2318]">{badge.label}</h3>
-              <p className="mt-2 font-[family-name:var(--font-public-sans)] text-sm leading-relaxed text-[#4c5c4e]">
+            <div key={badge.label} data-trust-badge className="bg-background p-8">
+              <h3 className="font-[family-name:var(--font-fraunces)] text-lg text-foreground">{badge.label}</h3>
+              <p className="mt-2 font-[family-name:var(--font-public-sans)] text-sm leading-relaxed text-muted-foreground">
                 {badge.detail}
               </p>
             </div>

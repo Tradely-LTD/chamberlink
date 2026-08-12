@@ -1,10 +1,20 @@
 /**
  * Chamberlink product marketing site — single source of truth for homepage copy.
+ *
  * Positioning: Chamberlink onboards Nigeria's STATE chambers of commerce onto one
- * platform, in partnership with NACCIMA — the national body mandated to issue
- * Certificates of Origin recognized by the international community. Once onboarded,
- * a state chamber runs its own instance with full autonomy over its members and
- * modules. KACCIMA is the first chamber onboarded, not the brand.
+ * platform, designed around NACCIMA's national mandate to issue Certificates of
+ * Origin recognized by the international community. Once onboarded, a state
+ * chamber runs its own instance with full autonomy over its members and modules.
+ *
+ * COMPLIANCE — read before editing: no chamber, including NACCIMA, may be
+ * described anywhere on this site as a signed, contracted, or committed
+ * partner, and no chamber may be named as already onboarded. As of this
+ * writing, every chamber relationship referenced here — NACCIMA included — is
+ * prospective / in discussion, not an executed agreement. Use "designed
+ * around", "built in collaboration with", "in discussion with" — never
+ * "partnered with" or past-tense onboarding claims. Never link to a tenant
+ * URL that doesn't exist; the only real live URLs today are the member portal
+ * (https://chamberlinkadmin.netlify.app) and this marketing site itself.
  *
  * SEO targets woven into this copy:
  * primary   — "chamber of commerce software Nigeria", "state chamber of commerce onboarding"
@@ -13,10 +23,15 @@
  *              onboarding platform", "membership management software for chambers"
  */
 
+// Real, live member-portal URL (Member Portal / "Chamber Login"). The backend
+// (chamberlinkbackend-production.up.railway.app) is API-only — never link it
+// from user-facing copy.
+export const PORTAL_URL = "https://chamberlinkadmin.netlify.app";
+
 export const seo = {
   title: "Chamberlink | Onboard Your State Chamber of Commerce",
   description:
-    "Chamberlink, built with NACCIMA, brings Nigeria's state chambers of commerce online — internationally recognized Certificates of Origin, membership, trade fairs and real member value, with full autonomy after onboarding.",
+    "Chamberlink brings Nigeria's state chambers of commerce online — designed around NACCIMA's national mandate for internationally recognized Certificates of Origin, plus membership, trade fairs, and real member value, with full autonomy after onboarding.",
   keywords: [
     "chamber of commerce software Nigeria",
     "state chamber of commerce onboarding",
@@ -38,17 +53,17 @@ export const nav = {
     { label: "Proof", href: "/#proof" },
     { label: "Contact", href: "/contact" },
   ],
-  ctaSecondary: { label: "Chamber Login", href: process.env.NEXT_PUBLIC_PORTAL_URL ?? "http://localhost:3000" },
+  ctaSecondary: { label: "Chamber Login", href: process.env.NEXT_PUBLIC_PORTAL_URL ?? PORTAL_URL },
   ctaPrimary: { label: "Request Onboarding", href: "/contact" },
 };
 
 type HeroStat = { label: string; value: string; prefix?: string; suffix?: string };
 
 export const hero = {
-  eyebrow: "A NACCIMA-PARTNERED PLATFORM FOR STATE CHAMBERS",
+  eyebrow: "DESIGNED AROUND NACCIMA'S NATIONAL MANDATE",
   headline: "Every State Chamber of Commerce, Fully Digital.",
   subhead:
-    "Chamberlink carries Nigeria's state chambers of commerce into the digital economy — built in partnership with NACCIMA, the national body mandated to issue Certificates of Origin recognized by the international community. Once onboarded, your chamber runs independently: manage your own members, generate new revenue, and give them real value from day one.",
+    "Chamberlink carries Nigeria's state chambers of commerce into the digital economy, built to carry NACCIMA's national mandate to issue Certificates of Origin recognized by the international community. Once onboarded, your chamber runs independently: manage your own members, generate new revenue, and give them real value from day one.",
   ctaPrimary: { label: "Request Onboarding", href: "/contact" },
   ctaSecondary: { label: "Explore the Platform", href: "/#platform" },
   scrollCue: "Scroll to explore the platform",
@@ -79,7 +94,7 @@ export type ModuleAct = {
   tagline: string;
   body: string;
   bullets: string[];
-  colorway: "emerald" | "jade" | "fern" | "moss" | "pine";
+  colorway: "mandate" | "corridor" | "ledger" | "network" | "academy";
 };
 
 export const modules: ModuleAct[] = [
@@ -93,8 +108,9 @@ export const modules: ModuleAct[] = [
       "Self-service member profiles, renewals, and digital ID cards",
       "Certificates of Origin: draft to issued, QR-verified for customs",
       "Trade fair booth reservations with automatic revenue-share splits",
+      "Solid Minerals export CoOs in development, supporting a national traceability and revenue-assurance initiative with the Federal Ministry of Solid Minerals Development",
     ],
-    colorway: "emerald",
+    colorway: "mandate",
   },
   {
     index: "02",
@@ -107,7 +123,7 @@ export const modules: ModuleAct[] = [
       "Admin queue for chamber-issued documentation",
       "Foundation for trade finance enablement as chambers scale",
     ],
-    colorway: "jade",
+    colorway: "corridor",
   },
   {
     index: "03",
@@ -120,7 +136,7 @@ export const modules: ModuleAct[] = [
       "Immutable audit trail on every financial and document action",
       "A data layer built to support verified business data APIs",
     ],
-    colorway: "fern",
+    colorway: "ledger",
   },
   {
     index: "04",
@@ -133,36 +149,37 @@ export const modules: ModuleAct[] = [
       "Sponsored corridor pages backed by embassies and partner chambers",
       "Automatic corridor matching from certificate destination data",
     ],
-    colorway: "moss",
+    colorway: "network",
   },
   {
     index: "05",
     eyebrow: "CAPACITY BUILDING & REPLICATION",
     title: "One platform. Every chamber, on its own terms.",
     tagline: "Academy · White-Label Provisioning",
-    body: "An in-platform Academy delivers trade-certification courses so chamber staff and members build capability alongside the tools. And because Chamberlink is white-label from day one, Tradely can stand up a fully-branded, independently-operated chamber platform — data isolated, modules configured to that chamber's needs — in weeks, not years.",
+    body: "An in-platform Academy delivers trade-certification courses so chamber staff and members build capability alongside the tools. Because Chamberlink is white-label from day one, Tradely can stand up a fully-branded, independently-operated chamber platform — data isolated, modules configured to that chamber's needs — in weeks, not years. And because identity lives at the platform level, one person can hold independent memberships across more than one onboarded chamber under a single ChamberLink identity — no duplicate onboarding, no lost history.",
     bullets: [
       "Course catalog with enrollment tied to active membership",
       "Fully white-label: branding, domain, and enabled-module set per chamber",
       "Logical data isolation — no chamber ever sees another's records",
+      "One ChamberLink identity, multiple independent chamber memberships",
     ],
-    colorway: "pine",
+    colorway: "academy",
   },
 ];
 
 export const mandate = {
   eyebrow: "WHY THIS IS POSSIBLE",
-  headline: "Built with NACCIMA, the national body with the mandate.",
+  headline: "Designed around NACCIMA, the national body with the mandate.",
   body:
-    "A state chamber can't simply decide to issue Certificates of Origin the world will honor — that authority sits with NACCIMA, the national body mandated to issue Certificates of Origin recognized by the international community. Chamberlink exists to carry that mandate to every state chamber digitally: onboarded chambers issue NACCIMA-recognized eCOs, backed by customs and buyers abroad, without needing their own international accreditation.",
+    "A state chamber can't simply decide to issue Certificates of Origin the world will honor — that authority sits with NACCIMA, the national body mandated to issue Certificates of Origin recognized by the international community. Chamberlink exists to carry that mandate to every state chamber digitally: onboarded chambers would issue NACCIMA-recognized eCOs, backed by customs and buyers abroad, without needing their own international accreditation.",
   pillars: [
     {
       label: "National mandate, local execution",
-      detail: "NACCIMA's recognition flows through the platform to every onboarded state chamber's members.",
+      detail: "NACCIMA's recognition is designed to flow through the platform to every onboarded state chamber's members.",
     },
     {
       label: "Onboarded, not built from scratch",
-      detail: "Your chamber requests onboarding — Tradely and NACCIMA handle the accreditation and setup.",
+      detail: "Your chamber requests onboarding — Tradely leads accreditation and setup, aligned with NACCIMA's national mandate.",
     },
     {
       label: "Full autonomy after onboarding",
@@ -187,25 +204,27 @@ export const trust = {
 };
 
 export const partners = {
-  eyebrow: "IN PARTNERSHIP WITH",
-  headline: "Backed by the bodies that make it official.",
+  eyebrow: "IN COLLABORATION WITH",
+  headline: "Aligned with the institutions that hold the mandate.",
   // Text-wordmark placeholders pending real logo files (SVG/PNG in
   // /public/partners/) — names below were verified via web search (current
-  // as of this writing). Confirm before adding any further bodies.
+  // as of this writing). These are collaboration / in-discussion relationships,
+  // not signed or contracted partnerships — see the file header compliance note.
+  // Confirm before adding any further bodies.
   logos: [
-    { name: "NACCIMA", abbr: "NACCIMA" },
-    { name: "Federal Ministry of Industry, Trade and Investment", abbr: "FMITI" },
+    { name: "NACCIMA", abbr: "NACCIMA", status: "In discussion" },
+    { name: "Federal Ministry of Industry, Trade and Investment", abbr: "FMITI", status: "In discussion" },
   ],
 };
 
 export const proof = {
-  eyebrow: "LIVE IN PRODUCTION",
-  headline: "KACCIMA was the first state chamber onboarded.",
+  eyebrow: "WHERE WE ARE TODAY",
+  headline: "Built and working end-to-end — onboarding is open.",
   body:
-    "The Kano Chamber of Commerce, Industry, Mines & Agriculture — established in 1921 — was the first chamber carried onto Chamberlink. Members renew dues, apply for NACCIMA-recognized Certificates of Origin, and reserve trade fair booths entirely online, while KACCIMA runs its own instance with full autonomy over its members and revenue.",
+    "Chamberlink's five modules are built and running today: dues collection, digital membership IDs, Certificate of Origin issuance, trade fair bookings, export documentation, and the member portal you can log into right now. No chamber has been onboarded as a live tenant yet — we're in active discussion with NACCIMA and prospective state chambers, and every one of those conversations starts from a platform that already works, not a slide deck.",
   partnerNote:
-    "NACCIMA's national mandate is what makes every certificate issued through Chamberlink recognized internationally — the same mandate that's available to your state chamber once onboarded.",
-  cta: { label: "See the KACCIMA tenant site", href: "https://kaccima.chamberlink.ng" },
+    "NACCIMA's national mandate is what will make every certificate issued through Chamberlink recognized internationally once a chamber is onboarded under it — the same mandate that will be available to your state chamber from day one.",
+  cta: { label: "See the member portal", href: PORTAL_URL },
 };
 
 export const finalCta = {
@@ -221,7 +240,7 @@ export const ONBOARDING_EMAIL = "partnerships@chamberlink.ng";
 export const contactPage = {
   eyebrow: "REQUEST ONBOARDING",
   headline: "Tell us about your chamber.",
-  body: "Fill this in and it opens a pre-filled email to our partnerships team — we'll follow up to walk through onboarding, from NACCIMA accreditation to your first live member.",
+  body: "Fill this in and it opens a pre-filled email to our partnerships team — we'll follow up to walk through onboarding, from NACCIMA-mandate accreditation to your first live member.",
   fallbackNote: `Prefer to email directly? Reach us at ${ONBOARDING_EMAIL}`,
 };
 
@@ -235,7 +254,7 @@ export const NIGERIA_STATES = [
 
 export const footer = {
   description:
-    "Chamberlink onboards Nigeria's state chambers of commerce onto one platform, in partnership with NACCIMA. Operated by Tradely LTD.",
+    "Chamberlink onboards Nigeria's state chambers of commerce onto one platform, designed around NACCIMA's national Certificate of Origin mandate. Operated by Tradely LTD.",
   columns: [
     {
       title: "Platform",
@@ -250,7 +269,7 @@ export const footer = {
       title: "Company",
       links: [
         { label: "NACCIMA Mandate", href: "/#mandate" },
-        { label: "KACCIMA Tenant Site", href: "https://kaccima.chamberlink.ng" },
+        { label: "Member Portal (Chamber Login)", href: PORTAL_URL },
         { label: "Contact", href: "/contact" },
       ],
     },

@@ -16,7 +16,7 @@ const icons: Record<string, LucideIcon> = {
 
 type Props = {
   module: ModuleActData;
-  position: number; // 0-based order among acts, drives left/right alternation
+  position: number; // 0-based order among acts, drives left/right alternation + bg rhythm
 };
 
 export default function ModuleAct({ module: mod, position }: Props) {
@@ -73,7 +73,9 @@ export default function ModuleAct({ module: mod, position }: Props) {
     <section
       ref={sectionRef}
       id={`module-${mod.index}`}
-      className="relative min-h-[110vh] px-6 py-24 md:min-h-[150vh] md:px-12"
+      className={`relative min-h-[110vh] border-t border-border px-6 py-24 md:min-h-[150vh] md:px-12 ${
+        position % 2 === 1 ? "bg-muted" : "bg-background"
+      }`}
     >
       <div className="sticky top-0 mx-auto flex min-h-screen w-full max-w-[1400px] items-center">
         <div
@@ -83,37 +85,30 @@ export default function ModuleAct({ module: mod, position }: Props) {
         >
           <div ref={textRef}>
             <div className="mb-6 flex items-center gap-4">
-              <span
-                className="font-[family-name:var(--font-fraunces)] text-lg"
-                style={{ color: colorways[color].bright }}
-              >
-                {mod.index}
-              </span>
-              <span className="h-px flex-1 max-w-16 bg-white/15" />
-              <span className="font-[family-name:var(--font-ibm-mono)] text-[11px] uppercase tracking-[0.18em] text-[#f2f6f0]/50">
+              <span className="font-[family-name:var(--font-fraunces)] text-lg text-primary">{mod.index}</span>
+              <span className="h-px flex-1 max-w-16 bg-border" />
+              <span className="font-[family-name:var(--font-ibm-mono)] text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
                 {mod.eyebrow}
               </span>
             </div>
 
-            <h2 className="font-[family-name:var(--font-fraunces)] text-3xl font-medium leading-[1.1] text-[#f2f6f0] md:text-5xl">
+            <h2 className="font-[family-name:var(--font-fraunces)] text-3xl font-medium leading-[1.1] text-foreground md:text-5xl">
               {mod.title}
             </h2>
-            <p
-              className="mt-3 font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-wider"
-              style={{ color: colorways[color].bright }}
-            >
+            <p className="mt-3 font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-wider text-primary">
               {mod.tagline}
             </p>
-            <p className="mt-6 max-w-lg font-[family-name:var(--font-public-sans)] text-base leading-relaxed text-[#f2f6f0]/65">
+            <p className="mt-6 max-w-lg font-[family-name:var(--font-public-sans)] text-base leading-relaxed text-muted-foreground">
               {mod.body}
             </p>
 
             <ul className="mt-8 space-y-3">
               {mod.bullets.map((bullet) => (
-                <li key={bullet} className="flex items-start gap-3 font-[family-name:var(--font-public-sans)] text-sm text-[#f2f6f0]/75">
+                <li key={bullet} className="flex items-start gap-3 font-[family-name:var(--font-public-sans)] text-sm text-foreground/85">
                   <span
                     className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
                     style={{ backgroundColor: colorways[color].bright }}
+                    aria-hidden="true"
                   />
                   {bullet}
                 </li>
@@ -126,7 +121,7 @@ export default function ModuleAct({ module: mod, position }: Props) {
             <div
               ref={ghostRef}
               className="pointer-events-none absolute select-none font-[family-name:var(--font-fraunces)] text-[220px] font-medium leading-none md:text-[320px]"
-              style={{ color: colorways[color].base, opacity: 0.18 }}
+              style={{ color: colorways[color].base, opacity: 0.1 }}
             >
               {mod.index}
             </div>
@@ -140,7 +135,7 @@ export default function ModuleAct({ module: mod, position }: Props) {
                   r="92"
                   fill="none"
                   stroke={colorways[color].bright}
-                  strokeOpacity="0.35"
+                  strokeOpacity="0.45"
                   strokeWidth="1"
                   strokeDasharray="2 8"
                 />
@@ -149,8 +144,8 @@ export default function ModuleAct({ module: mod, position }: Props) {
                   cy="100"
                   r="70"
                   fill="none"
-                  stroke={colorways[color].bright}
-                  strokeOpacity="0.5"
+                  stroke={colorways[color].base}
+                  strokeOpacity="0.4"
                   strokeWidth="1"
                 />
               </svg>
@@ -159,8 +154,8 @@ export default function ModuleAct({ module: mod, position }: Props) {
             {/* Foreground layer — icon chip, fastest parallax (reads closest) */}
             <div
               ref={chipRef}
-              className="relative flex h-28 w-28 items-center justify-center rounded-3xl border border-white/10 shadow-2xl backdrop-blur-md md:h-36 md:w-36"
-              style={{ backgroundColor: `${colorways[color].base}cc` }}
+              className="relative flex h-28 w-28 items-center justify-center rounded-3xl shadow-2xl md:h-36 md:w-36"
+              style={{ backgroundColor: `${colorways[color].base}e6` }}
             >
               <Icon className="h-12 w-12 md:h-14 md:w-14" style={{ color: colorways[color].bright }} strokeWidth={1.5} />
             </div>

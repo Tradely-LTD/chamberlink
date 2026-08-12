@@ -2,13 +2,19 @@
 @import "tw-animate-css";
 
 @theme {
-  /* Chamberlink brand — all-green system, see lib/theme.ts for the JS-side tokens */
-  --color-ink: #0a1f16;
-  --color-ink-deep: #06140d;
-  --color-emerald: #145c42;
-  --color-emerald-bright: #34c28d;
-  --color-paper: #f2f6f0;
-  --color-paper-deep: #e7f0e3;
+  /* Chamberlink brand — "Trust & Authority": navy + gold, light-mode primary.
+     See lib/theme.ts for the JS-side tokens and full contrast notes. */
+  --color-primary: #023293; /* NACCIMA blue, verified */
+  --color-primary-deep: #051937; /* dramatic dark-section background */
+  --color-accent: #c9932e; /* refined gold — CTAs / dark-surface accents only */
+  --color-accent-ink: #7a5619; /* WCAG-safe gold text/icon color for LIGHT surfaces */
+  --color-background: #fafaf8;
+  --color-foreground: #0a1628;
+  --color-muted: #eef1f6;
+  --color-muted-foreground: #3c4a5e;
+  --color-border: #dfe4ec;
+  --color-destructive: #dc2626;
+  --color-on-primary: #ffffff;
 
   --font-fraunces: "Fraunces", Georgia, serif;
   --font-public-sans: "Public Sans", system-ui, sans-serif;
@@ -16,9 +22,14 @@
 }
 
 body {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-primary-deep);
 }
 
 @media (prefers-reduced-motion: reduce) {

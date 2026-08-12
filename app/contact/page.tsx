@@ -13,15 +13,15 @@ export default function ContactPage() {
   return (
     <>
       <CorporateNavbar />
-      <main className="min-h-dvh bg-[#e7f0e3] px-6 pb-24 pt-32 md:px-12">
+      <main className="min-h-dvh bg-muted px-6 pb-24 pt-32 md:px-12">
         <div className="mx-auto max-w-2xl">
-          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-[#12503f]">
+          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-accent-ink">
             {contactPage.eyebrow}
           </span>
-          <h1 className="font-[family-name:var(--font-fraunces)] text-4xl font-medium leading-tight text-[#0f2318] md:text-5xl">
+          <h1 className="font-[family-name:var(--font-fraunces)] text-4xl font-medium leading-tight text-foreground md:text-5xl">
             {contactPage.headline}
           </h1>
-          <p className="mt-4 font-[family-name:var(--font-public-sans)] text-base leading-relaxed text-[#4c5c4e]">
+          <p className="mt-4 font-[family-name:var(--font-public-sans)] text-base leading-relaxed text-muted-foreground">
             {contactPage.body}
           </p>
 
@@ -29,7 +29,7 @@ export default function ContactPage() {
             <ContactForm />
           </div>
 
-          <p className="mt-6 text-center font-[family-name:var(--font-public-sans)] text-xs text-[#4c5c4e]">
+          <p className="mt-6 text-center font-[family-name:var(--font-public-sans)] text-xs text-muted-foreground">
             {contactPage.fallbackNote}
           </p>
         </div>

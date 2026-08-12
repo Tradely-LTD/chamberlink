@@ -3,29 +3,21 @@
 import { useRef } from "react";
 import TradeNetworkCanvas from "@/components/canvas/TradeNetworkCanvas";
 import CinematicHero from "@/components/cinematic/CinematicHero";
-import ProblemAct from "@/components/cinematic/ProblemAct";
-import MandateAct from "@/components/cinematic/MandateAct";
-import ModuleAct from "@/components/cinematic/ModuleAct";
-import { modules } from "@/lib/content/homeCopy";
 import type { ColorwayName } from "@/lib/theme";
 
-// One colorway per act (hero, problem, mandate, then each of the 5 modules) —
-// the canvas lerps between these as the visitor scrolls through the journey.
-const colorStops: ColorwayName[] = ["emerald", "emerald", "emerald", ...modules.map((m) => m.colorway)];
+// Dramatic dark section #1 of 2 on the page — the hero only. A short, subtle
+// two-stop lerp gives the camera dolly some color movement without the
+// rainbow-across-the-whole-page effect the old five-colorway journey had.
+const colorStops: ColorwayName[] = ["mandate", "corridor"];
 
 export default function DarkJourney() {
   const journeyRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div ref={journeyRef} className="relative bg-[#0a1f16]">
+    <div ref={journeyRef} className="relative bg-primary-deep">
       <TradeNetworkCanvas journeyRef={journeyRef} colorStops={colorStops} />
       <div className="relative z-10">
         <CinematicHero />
-        <ProblemAct />
-        <MandateAct />
-        {modules.map((mod, i) => (
-          <ModuleAct key={mod.index} module={mod} position={i} />
-        ))}
       </div>
     </div>
   );

@@ -1,32 +1,46 @@
 /**
  * Chamberlink brand tokens (product marketing site).
- * All-green system — deliberately no gold/brass and no true black, per brand
- * direction. Distinct from the KACCIMA tenant green so the two never collide.
+ *
+ * Palette verified against NACCIMA's own live brand blue (`#023293`) — this is
+ * a "Trust & Authority" institutional system: navy + gold, light-mode primary,
+ * with a small number of full-bleed dark moments for cinematic weight. See
+ * app/globals.css for the CSS-side `@theme` tokens; keep the two in sync.
+ *
+ * Contrast notes (WCAG 2.1, checked against the exact hexes below):
+ * - foreground on background:            17.35:1
+ * - primary on background:               10.69:1
+ * - white on primary / primary-deep:     11.17:1 / 17.49:1
+ * - accent (raw gold) on primary-deep:    6.41:1  (safe for small text ON DARK ONLY)
+ * - accent (raw gold) on background:      2.61:1  (FAILS — never use raw accent
+ *   as text/icon color on a light surface; use `accentInk` instead, 6.33:1)
+ * - mutedForeground on background:        8.61:1
  */
 
 export const brand = {
-  ink: "#0a1f16", // cinematic background — deep forest night, not black
-  inkDeep: "#06140d",
-  emerald: "#145c42", // primary — mid forest green
-  emeraldBright: "#34c28d", // glow / accent green on dark (replaces gold everywhere)
-  paper: "#f2f6f0", // light section background — cool pale green-white
-  paperDeep: "#e7f0e3",
-  stone: "#6e7a6f", // muted green-grey
-  line: "rgba(255,255,255,0.08)",
-  lineOnPaper: "#d9e5d3",
-  textOnDark: "#f2f6f0",
-  textOnDarkMuted: "rgba(242,246,240,0.66)",
-  textOnPaper: "#0f2318",
-  textOnPaperMuted: "#4c5c4e",
+  // Core institutional palette — locked to NACCIMA's verified brand blue.
+  primary: "#023293", // NACCIMA blue
+  primaryDeep: "#051937", // dramatic dark-section background, and text-on-light where extra depth reads better
+  accent: "#C9932E", // refined gold — CTAs, dark-surface accents, decorative fills. NOT for text on light bg (2.6:1).
+  accentInk: "#7A5619", // WCAG-safe gold-family text/icon color for LIGHT surfaces (6.33:1 on background)
+  background: "#FAFAF8", // warm off-white
+  foreground: "#0A1628", // near-black navy body text
+  muted: "#EEF1F6",
+  mutedForeground: "#3C4A5E", // secondary text on light surfaces (8.61:1)
+  border: "#DFE4EC",
+  destructive: "#DC2626",
+  onPrimary: "#FFFFFF",
+  line: "rgba(255,255,255,0.12)", // hairline dividers on dark sections
 } as const;
 
-// Five distinct green tones — one per module act. No gold, no black, no browns.
+// Five institutional variations along the navy → gold spectrum, one per module
+// act — cohesive rather than a rainbow, so the "Trust & Authority" read holds
+// even as the visual accent shifts module to module.
 export const colorways = {
-  emerald: { base: "#12503f", bright: "#34c28d" }, // classic forest emerald
-  jade: { base: "#0f4a45", bright: "#2dd9c4" }, // teal-leaning jade
-  fern: { base: "#2f5233", bright: "#7bc86c" }, // fresh fern green
-  moss: { base: "#33421f", bright: "#a3c25f" }, // olive moss
-  pine: { base: "#0b2a1e", bright: "#2e8b57" }, // dark pine / sea green
+  mandate: { base: "#023293", bright: "#C9932E" }, // 01 — core navy + gold
+  corridor: { base: "#0A3D82", bright: "#D4A544" }, // 02
+  ledger: { base: "#123B6E", bright: "#C9932E" }, // 03
+  network: { base: "#164B8C", bright: "#E0B25C" }, // 04
+  academy: { base: "#051937", bright: "#C9932E" }, // 05 — deepest, closes the sequence
 } as const;
 
 export type ColorwayName = keyof typeof colorways;
