@@ -55,13 +55,13 @@ export default function HeroVisual() {
       {/* Texture: faint dotted grid */}
       <svg className="absolute inset-0 h-full w-full opacity-20" aria-hidden="true">
         <pattern id="hero-grid" width="24" height="24" patternUnits="userSpaceOnUse">
-          <circle cx="1.5" cy="1.5" r="1.5" fill="#fafaf8" />
+          <circle cx="1.5" cy="1.5" r="1.5" fill="#fdf8f3" />
         </pattern>
         <rect width="100%" height="100%" fill="url(#hero-grid)" />
       </svg>
 
       {/* Glow blob */}
-      <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent opacity-25 blur-3xl" />
+      <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-gold-tint opacity-25 blur-3xl" />
       <div className="absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-[#4d7fd6] opacity-20 blur-3xl" />
 
       {/* Membership ID card — background layer */}
@@ -73,12 +73,12 @@ export default function HeroVisual() {
           <span className="font-[family-name:var(--font-ibm-mono)] text-[9px] uppercase tracking-widest text-white/60">
             Member ID
           </span>
-          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+          <span className="h-1.5 w-1.5 rounded-full bg-gold-tint" />
         </div>
         <div className="mt-3 h-2 w-3/4 rounded bg-white/25" />
         <div className="mt-2 h-2 w-1/2 rounded bg-white/15" />
         <div className="mt-4 flex items-center justify-between">
-          <span className="font-[family-name:var(--font-ibm-mono)] text-[9px] text-accent">ACTIVE</span>
+          <span className="font-[family-name:var(--font-ibm-mono)] text-[9px] text-gold-tint">ACTIVE</span>
           <QrCode className="h-6 w-6 text-white/50" strokeWidth={1.25} />
         </div>
       </div>
@@ -93,7 +93,7 @@ export default function HeroVisual() {
             <span className="font-[family-name:var(--font-ibm-mono)] text-[9px] uppercase tracking-widest text-muted-foreground">
               Certificate of Origin
             </span>
-            <p className="mt-1 font-[family-name:var(--font-fraunces)] text-sm text-foreground">SAMPLE-CoO-04821</p>
+            <p className="mt-1 font-[family-name:var(--font-fraunces)] text-sm text-foreground">SAMPLE-SM-COO-04821</p>
           </div>
           <ShieldCheck className="h-6 w-6 shrink-0 text-primary" strokeWidth={1.5} />
         </div>

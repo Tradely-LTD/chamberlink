@@ -26,7 +26,7 @@ export default function TrustSection() {
     <section ref={rootRef} className="bg-background px-6 py-28 md:px-12">
       <div className="mx-auto max-w-[1400px]">
         <div className="max-w-2xl">
-          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-accent-ink">
+          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-gold">
             {trust.eyebrow}
           </span>
           <h2 className="font-[family-name:var(--font-fraunces)] text-3xl font-medium leading-tight text-foreground md:text-5xl">

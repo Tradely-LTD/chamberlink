@@ -1,17 +1,37 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { ShieldCheck, FileText, BarChart3, Globe2, GraduationCap, type LucideIcon } from "lucide-react";
+import {
+  Users,
+  Globe2,
+  ShieldCheck,
+  GraduationCap,
+  Tent,
+  Route,
+  FileText,
+  type LucideIcon,
+} from "lucide-react";
 import { gsap } from "@/lib/motion/gsap";
 import { colorways, type ColorwayName } from "@/lib/theme";
-import type { ModuleAct as ModuleActData } from "@/lib/content/homeCopy";
 
 const icons: Record<string, LucideIcon> = {
-  "01": ShieldCheck,
-  "02": FileText,
-  "03": BarChart3,
-  "04": Globe2,
-  "05": GraduationCap,
+  "01": Users,
+  "02": Globe2,
+  "03": ShieldCheck,
+  "04": GraduationCap,
+  "05": Tent,
+  "06": Route,
+  "07": FileText,
+};
+
+type ModuleActData = {
+  index: string;
+  eyebrow: string;
+  title: string;
+  tagline: string;
+  body: string;
+  bullets: string[];
+  colorway: ColorwayName;
 };
 
 type Props = {
@@ -19,6 +39,9 @@ type Props = {
   position: number; // 0-based order among acts, drives left/right alternation + bg rhythm
 };
 
+// Reusable "scroll act" pattern — sticky icon panel + parallax layers,
+// content driven entirely by props. Currently used on /for-chambers for the
+// 7-item value-proposition list.
 export default function ModuleAct({ module: mod, position }: Props) {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);

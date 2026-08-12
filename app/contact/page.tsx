@@ -15,7 +15,7 @@ export default function ContactPage() {
       <CorporateNavbar />
       <main className="min-h-dvh bg-muted px-6 pb-24 pt-32 md:px-12">
         <div className="mx-auto max-w-2xl">
-          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-accent-ink">
+          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-gold">
             {contactPage.eyebrow}
           </span>
           <h1 className="font-[family-name:var(--font-fraunces)] text-4xl font-medium leading-tight text-foreground md:text-5xl">

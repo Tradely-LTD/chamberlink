@@ -1,46 +1,55 @@
 /**
- * Chamberlink product marketing site — single source of truth for homepage copy.
+ * Chamberlink corporate site — homepage copy.
  *
- * Positioning: Chamberlink onboards Nigeria's STATE chambers of commerce onto one
- * platform, designed around NACCIMA's national mandate to issue Certificates of
- * Origin recognized by the international community. Once onboarded, a state
- * chamber runs its own instance with full autonomy over its members and modules.
+ * POSITIONING (locked after two rounds of review — do not drift from this):
+ * This homepage is the public face of NACCIMA's official Certificate of
+ * Origin platform for Nigeria's SOLID MINERALS sector only — licensed mining
+ * companies, mineral processors, and mineral exporters. It is NOT a
+ * general-purpose multi-sector export tool, and it is explicitly NOT called
+ * "NACCIMA e-Certify" (that name was rejected). The audience is narrow and
+ * sector-specific "for now" — it may expand later, but copy should not imply
+ * a broader scope today.
  *
- * COMPLIANCE — read before editing: no chamber, including NACCIMA, may be
- * described anywhere on this site as a signed, contracted, or committed
- * partner, and no chamber may be named as already onboarded. As of this
- * writing, every chamber relationship referenced here — NACCIMA included — is
- * prospective / in discussion, not an executed agreement. Use "designed
- * around", "built in collaboration with", "in discussion with" — never
- * "partnered with" or past-tense onboarding claims. Never link to a tenant
- * URL that doesn't exist; the only real live URLs today are the member portal
- * (https://chamberlinkadmin.netlify.app) and this marketing site itself.
+ * The separate pitch to chambers of commerce considering onboarding onto the
+ * wider Chamberlink platform lives at /for-chambers (lib/content/forChambersCopy.ts)
+ * — a different audience, deliberately not mixed into this file. See
+ * CLAUDE.md "Repository layout" / "For Chambers" note.
  *
- * SEO targets woven into this copy:
- * primary   — "chamber of commerce software Nigeria", "state chamber of commerce onboarding"
- * secondary — "NACCIMA certificate of origin platform", "chamber management platform"
- * long-tail — "digital platform for Nigerian chambers of commerce", "affiliate chamber
- *              onboarding platform", "membership management software for chambers"
+ * COMPLIANCE — read before editing: no chamber, government body, or industry
+ * association may be described anywhere on this site as a signed, contracted,
+ * or committed partner. As of this writing every relationship referenced here
+ * is prospective / in discussion, not an executed agreement. Use "in
+ * discussion with" — never "partnered with" or past-tense onboarding claims.
  */
 
-// Real, live member-portal URL (Member Portal / "Chamber Login"). The backend
+// Real, live member-portal URLs. The backend
 // (chamberlinkbackend-production.up.railway.app) is API-only — never link it
-// from user-facing copy.
+// from user-facing copy except as a fetch target (see API_BASE_URL below).
 export const PORTAL_URL = "https://chamberlinkadmin.netlify.app";
+export const PORTAL_LOGIN_URL = `${PORTAL_URL}/login`; // confirmed real route: chamberlink_frontend/src/app/router.tsx
+export const PORTAL_REGISTER_URL = `${PORTAL_URL}/register`; // confirmed real route
+
+// Public, unauthenticated backend endpoint used by /verify. Confirmed against
+// chamberlink_backend/src/modules/e-certificate/{route,controller,service}.ts:
+// GET /api/eco/verify/:certNumber -> { success, data: { certificateNumber,
+// exporterName, destinationCountry, hsCode, issuedAt, status, isValid } }
+export const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ?? "https://chamberlinkbackend-production.up.railway.app";
+
+export const ONBOARDING_EMAIL = "partnerships@chamberlink.ng";
 
 export const seo = {
-  title: "Chamberlink | Onboard Your State Chamber of Commerce",
+  title: "NACCIMA Solid Minerals Certificate of Origin | Chamberlink",
   description:
-    "Chamberlink brings Nigeria's state chambers of commerce online — designed around NACCIMA's national mandate for internationally recognized Certificates of Origin, plus membership, trade fairs, and real member value, with full autonomy after onboarding.",
+    "The official Certificate of Origin platform for Nigeria's Solid Minerals sector — licensed mining companies, mineral processors, and exporters apply, pay, and get certified by NACCIMA online.",
   keywords: [
-    "chamber of commerce software Nigeria",
-    "state chamber of commerce onboarding",
-    "NACCIMA certificate of origin platform",
-    "chamber management platform",
-    "digital platform for Nigerian chambers of commerce",
-    "affiliate chamber onboarding platform",
-    "membership management software for chambers",
-    "eCO platform Nigeria",
+    "NACCIMA Certificate of Origin",
+    "Solid Minerals Certificate of Origin Nigeria",
+    "mining export certificate Nigeria",
+    "mineral exporter certification",
+    "NACCIMA solid minerals",
+    "verify certificate of origin Nigeria",
+    "Nigeria mineral export documentation",
   ],
   siteName: "Chamberlink",
 };
@@ -48,194 +57,152 @@ export const seo = {
 export const nav = {
   wordmark: "Chamberlink",
   links: [
-    { label: "Platform", href: "/#platform" },
-    { label: "NACCIMA Mandate", href: "/#mandate" },
-    { label: "Proof", href: "/#proof" },
-    { label: "Contact", href: "/contact" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Verify", href: "/verify" },
+    { label: "For Chambers", href: "/for-chambers" },
   ],
-  ctaSecondary: { label: "Chamber Login", href: process.env.NEXT_PUBLIC_PORTAL_URL ?? PORTAL_URL },
-  ctaPrimary: { label: "Request Onboarding", href: "/contact" },
+  register: {
+    label: "Register",
+    href: PORTAL_REGISTER_URL,
+    detail:
+      "Create your free ChamberLink ID — this isn't chamber membership, just enough to apply for your Solid Minerals Certificate of Origin and track it.",
+  },
+  login: {
+    label: "Login",
+    href: PORTAL_LOGIN_URL,
+    options: [
+      {
+        label: "Apply for a Certificate of Origin",
+        detail: "Log in to start or continue your Solid Minerals eCO application.",
+        href: PORTAL_LOGIN_URL,
+      },
+      {
+        label: "Become a Member of a Chamber",
+        detail: "Log in and join a chamber to unlock membership benefits.",
+        href: PORTAL_LOGIN_URL,
+      },
+      {
+        label: "Connect an Existing Membership ID",
+        detail: "Already a member elsewhere? Link your existing ChamberLink ID.",
+        href: PORTAL_LOGIN_URL,
+      },
+    ],
+  },
+  ctaPrimary: { label: "Apply for a Certificate", href: "/apply" },
 };
-
-type HeroStat = { label: string; value: string; prefix?: string; suffix?: string };
 
 export const hero = {
-  eyebrow: "DESIGNED AROUND NACCIMA'S NATIONAL MANDATE",
-  headline: "Every State Chamber of Commerce, Fully Digital.",
+  eyebrow: "NACCIMA SOLID MINERALS COO",
+  headline: "Nigeria's minerals, certified by NACCIMA.",
   subhead:
-    "Chamberlink carries Nigeria's state chambers of commerce into the digital economy, built to carry NACCIMA's national mandate to issue Certificates of Origin recognized by the international community. Once onboarded, your chamber runs independently: manage your own members, generate new revenue, and give them real value from day one.",
-  ctaPrimary: { label: "Request Onboarding", href: "/contact" },
-  ctaSecondary: { label: "Explore the Platform", href: "/#platform" },
-  scrollCue: "Scroll to explore the platform",
+    "The official Certificate of Origin platform for Nigeria's Solid Minerals sector — from licensed mining companies to processors and exporters.",
+  ctaPrimary: { label: "Apply for a Certificate", href: "/apply" },
+  ctaSecondary: { label: "Verify a Certificate", href: "/verify" },
+  scrollCue: "Scroll to see how it works",
   stats: [
-    { label: "Chamber modules", value: "5" },
-    { label: "Payment gateways", value: "3", suffix: "+" },
-    { label: "API latency", value: "200", prefix: "<", suffix: "ms" },
-    { label: "Revenue to chamber", value: "90", suffix: "%" },
-  ] as HeroStat[],
+    { label: "Certifying authority", value: "NACCIMA" },
+    { label: "Sector coverage", value: "Solid Minerals" },
+    { label: "Certificate delivery", value: "Digital", suffix: "" },
+    { label: "Verification", value: "24", suffix: "/7" },
+  ] as { label: string; value: string; prefix?: string; suffix?: string }[],
 };
 
-export const problem = {
-  eyebrow: "THE STATUS QUO",
-  headline: "Most chambers still run on spreadsheets, WhatsApp groups, and paper receipts.",
-  body:
-    "Dues collected in cash with no reconciliation. Certificates of Origin issued by hand and easy to forge. No way to prove to government or funders what the chamber actually does. Chamberlink replaces the filing cabinet with infrastructure a modern institution deserves.",
-  points: [
-    { label: "No digital trail", detail: "Cash dues and manual receipts leave no audit trail for the chamber or its members." },
-    { label: "Forgeable paperwork", detail: "Hand-issued Certificates of Origin can't be verified by customs or buyers in real time." },
-    { label: "Invisible impact", detail: "Chambers can't show funders or government hard numbers on trade facilitated." },
-  ],
+export type Step = { index: string; title: string; body: string; items?: string[] };
+
+export const howItWorks = {
+  eyebrow: "HOW IT WORKS",
+  headline: "Your Certificate of Origin, in three steps.",
+  body: "A digital process built for the realities of the sector — no queueing at a chamber office, no paperwork lost in transit.",
+  steps: [
+    {
+      index: "01",
+      title: "Gather your documents",
+      body: "Have these ready before you start: your CAC certificate, NEPC Export License, Mining License (where applicable), and Commercial Invoice.",
+      items: ["CAC Certificate", "NEPC Export License", "Mining License (if applicable)", "Commercial Invoice"],
+    },
+    {
+      index: "02",
+      title: "Apply & pay",
+      body: "Submit your application online and pay the applicable fee through the platform's secure checkout. You'll receive a Payment Receipt immediately.",
+    },
+    {
+      index: "03",
+      title: "Get verified & certified",
+      body: "NACCIMA reviews your documents against the application. Once approved, your Certificate of Origin is issued instantly and digitally — ready to present or share for verification.",
+    },
+  ] as Step[],
 };
 
-export type ModuleAct = {
-  index: string;
-  eyebrow: string;
-  title: string;
-  tagline: string;
-  body: string;
-  bullets: string[];
-  colorway: "mandate" | "corridor" | "ledger" | "network" | "academy";
+export type ServiceItem = { title: string; detail: string };
+
+export const services = {
+  eyebrow: "BEYOND CERTIFICATION",
+  headline: "Services of NACCIMA",
+  intro: "Beyond certification, NACCIMA supports Nigeria's mineral sector with:",
+  items: [
+    {
+      title: "Business Networking & Matchmaking",
+      detail: "Structured introductions between Nigerian mineral businesses and buyers, processors, and investors seeking verified partners.",
+    },
+    {
+      title: "Trade Missions & Exhibitions",
+      detail: "Delegations and pavilion access at international trade events that put Nigerian solid minerals in front of global demand.",
+    },
+    {
+      title: "Access to Financing & Investment Opportunities",
+      detail: "Introductions to financiers and investment programs aligned with mining, processing, and export-scale capital needs.",
+    },
+    {
+      title: "Policy Advocacy & Representation",
+      detail: "A collective voice to government on regulation, taxation, and trade policy affecting the solid minerals value chain.",
+    },
+    {
+      title: "Capacity Building & Training Programs",
+      detail: "Practical training on compliance, export documentation, and international trade standards for operators and their staff.",
+    },
+    {
+      title: "Research & Market Intelligence",
+      detail: "Sector data and market analysis to help producers and exporters plan around demand, pricing, and destination markets.",
+    },
+  ] as ServiceItem[],
 };
 
-export const modules: ModuleAct[] = [
-  {
-    index: "01",
-    eyebrow: "REVENUE & GOVERNANCE CORE",
-    title: "Every member, verified and paying.",
-    tagline: "Membership · Certificates of Origin · Trade Fairs",
-    body: "The chamber's core revenue engine, digitized end-to-end. Tiered dues, digital membership cards with QR verification, and eCO issuance all route through one split-settlement checkout — funds land in the chamber's and Tradely's accounts automatically, in real time. No manual reconciliation, no cash handling, no back door to mark something 'paid.'",
-    bullets: [
-      "Self-service member profiles, renewals, and digital ID cards",
-      "Certificates of Origin: draft to issued, QR-verified for customs",
-      "Trade fair booth reservations with automatic revenue-share splits",
-      "Solid Minerals export CoOs in development, supporting a national traceability and revenue-assurance initiative with the Federal Ministry of Solid Minerals Development",
-    ],
-    colorway: "mandate",
-  },
-  {
-    index: "02",
-    eyebrow: "TRADE FACILITATION & FINANCE",
-    title: "Export paperwork, generated in minutes.",
-    tagline: "Commercial Invoices · Packing Lists · Trade Documentation",
-    body: "What used to take a staff member an afternoon — drafting a commercial invoice, packing list, or bundled export document set — now takes minutes. Exporters generate compliant paperwork themselves; chambers keep full visibility and control over every document that leaves the building.",
-    bullets: [
-      "Self-service document generator with instant PDF output",
-      "Admin queue for chamber-issued documentation",
-      "Foundation for trade finance enablement as chambers scale",
-    ],
-    colorway: "corridor",
-  },
-  {
-    index: "03",
-    eyebrow: "BUSINESS INTELLIGENCE",
-    title: "Turn transaction data into evidence.",
-    tagline: "Trade Intelligence · Verified Business Data",
-    body: "Every membership, certificate, and trade fair booking Chamberlink processes becomes structured data — not paperwork. Chamber leadership gets a real-time view of dues collected, certificates issued, and trade facilitated, the kind of evidence that wins funding conversations and government partnerships.",
-    bullets: [
-      "Live dashboards for chamber executives, not just admins",
-      "Immutable audit trail on every financial and document action",
-      "A data layer built to support verified business data APIs",
-    ],
-    colorway: "ledger",
-  },
-  {
-    index: "04",
-    eyebrow: "TRADE PROMOTION & MARKET ACCESS",
-    title: "Put your exporters in front of the world.",
-    tagline: "Exporter Directory · Sponsored Trade Corridors",
-    body: "A verified, searchable exporter directory turns chamber membership into market access — buyers and institutional partners can find and vet exporters directly. Sponsored trade corridors let embassies and foreign chambers back specific trade routes, connecting local businesses to demand on the other side.",
-    bullets: [
-      "Public, searchable exporter profiles with premium tiers",
-      "Sponsored corridor pages backed by embassies and partner chambers",
-      "Automatic corridor matching from certificate destination data",
-    ],
-    colorway: "network",
-  },
-  {
-    index: "05",
-    eyebrow: "CAPACITY BUILDING & REPLICATION",
-    title: "One platform. Every chamber, on its own terms.",
-    tagline: "Academy · White-Label Provisioning",
-    body: "An in-platform Academy delivers trade-certification courses so chamber staff and members build capability alongside the tools. Because Chamberlink is white-label from day one, Tradely can stand up a fully-branded, independently-operated chamber platform — data isolated, modules configured to that chamber's needs — in weeks, not years. And because identity lives at the platform level, one person can hold independent memberships across more than one onboarded chamber under a single ChamberLink identity — no duplicate onboarding, no lost history.",
-    bullets: [
-      "Course catalog with enrollment tied to active membership",
-      "Fully white-label: branding, domain, and enabled-module set per chamber",
-      "Logical data isolation — no chamber ever sees another's records",
-      "One ChamberLink identity, multiple independent chamber memberships",
-    ],
-    colorway: "academy",
-  },
-];
-
-export const mandate = {
-  eyebrow: "WHY THIS IS POSSIBLE",
-  headline: "Designed around NACCIMA, the national body with the mandate.",
-  body:
-    "A state chamber can't simply decide to issue Certificates of Origin the world will honor — that authority sits with NACCIMA, the national body mandated to issue Certificates of Origin recognized by the international community. Chamberlink exists to carry that mandate to every state chamber digitally: onboarded chambers would issue NACCIMA-recognized eCOs, backed by customs and buyers abroad, without needing their own international accreditation.",
-  pillars: [
-    {
-      label: "National mandate, local execution",
-      detail: "NACCIMA's recognition is designed to flow through the platform to every onboarded state chamber's members.",
-    },
-    {
-      label: "Onboarded, not built from scratch",
-      detail: "Your chamber requests onboarding — Tradely leads accreditation and setup, aligned with NACCIMA's national mandate.",
-    },
-    {
-      label: "Full autonomy after onboarding",
-      detail: "Once live, your chamber manages its own members and modules independently, on its own branded instance.",
-    },
+export const partners = {
+  eyebrow: "IN DISCUSSION WITH",
+  headline: "Aligned with the institutions and operators in the sector.",
+  // Text-wordmark placeholders (no fabricated logo images). These are
+  // collaboration / in-discussion relationships, not signed or contracted
+  // partnerships — the "status" label is intentional and must not be removed
+  // without a signed agreement to point to. Applies equally to government
+  // and industry bodies, not just chambers — see CLAUDE.md compliance rules.
+  logos: [
+    { name: "Federal Ministry of Solid Minerals Development", abbr: "FMSMD", status: "In discussion" },
+    { name: "Mineral Processors", abbr: "Processors", status: "In discussion" },
+    { name: "Licensed Mining Companies", abbr: "Mining Cos.", status: "In discussion" },
   ],
 };
 
 export const trust = {
-  eyebrow: "TRUST & COMPLIANCE",
-  headline: "Bank-grade infrastructure, built for regulators as much as members.",
-  body:
-    "Every fee routes through a real-time split-settlement checkout with multi-gateway failover — there is no admin path to mark something paid off-platform. Every financial and document action writes to an immutable, append-only audit log.",
+  eyebrow: "TRUST & VERIFICATION",
+  headline: "A certificate that customs and buyers can trust — and check.",
+  body: "Every fee routes through a real-time split-settlement checkout with multi-gateway failover. Every certificate issued and every document action writes to an immutable, append-only audit log — and any certificate can be independently verified in seconds.",
   badges: [
+    { label: "Instant public verification", detail: "Any certificate number can be checked for validity, free, with no login required" },
     { label: "Multi-gateway failover", detail: "Paystack, Flutterwave and Remita with automatic failover" },
-    { label: "Split-settlement", detail: "Real-time fee routing to chamber and Tradely accounts" },
+    { label: "Split-settlement checkout", detail: "Real-time fee routing — no cash, no off-platform payment path" },
     { label: "RBAC + mandatory MFA", detail: "Role and ownership checks on every protected route" },
-    { label: "Immutable audit log", detail: "Timestamped, append-only record of every financial action" },
-    { label: "NDPA compliant", detail: "Data stays in Nigeria-based regions, encrypted at rest" },
-    { label: "TLS 1.3 in transit", detail: "AES-256 at rest, HTTPS enforced everywhere" },
+    { label: "Immutable audit log", detail: "Timestamped, append-only record of every financial and document action" },
+    { label: "NDPA compliant", detail: "Data stays in Nigeria-based regions, TLS 1.3 in transit, AES-256 at rest" },
   ],
-};
-
-export const partners = {
-  eyebrow: "IN COLLABORATION WITH",
-  headline: "Aligned with the institutions that hold the mandate.",
-  // Text-wordmark placeholders pending real logo files (SVG/PNG in
-  // /public/partners/) — names below were verified via web search (current
-  // as of this writing). These are collaboration / in-discussion relationships,
-  // not signed or contracted partnerships — see the file header compliance note.
-  // Confirm before adding any further bodies.
-  logos: [
-    { name: "NACCIMA", abbr: "NACCIMA", status: "In discussion" },
-    { name: "Federal Ministry of Industry, Trade and Investment", abbr: "FMITI", status: "In discussion" },
-  ],
-};
-
-export const proof = {
-  eyebrow: "WHERE WE ARE TODAY",
-  headline: "Built and working end-to-end — onboarding is open.",
-  body:
-    "Chamberlink's five modules are built and running today: dues collection, digital membership IDs, Certificate of Origin issuance, trade fair bookings, export documentation, and the member portal you can log into right now. No chamber has been onboarded as a live tenant yet — we're in active discussion with NACCIMA and prospective state chambers, and every one of those conversations starts from a platform that already works, not a slide deck.",
-  partnerNote:
-    "NACCIMA's national mandate is what will make every certificate issued through Chamberlink recognized internationally once a chamber is onboarded under it — the same mandate that will be available to your state chamber from day one.",
-  cta: { label: "See the member portal", href: PORTAL_URL },
 };
 
 export const finalCta = {
-  eyebrow: "READY WHEN YOU ARE",
-  headline: "Bring your state chamber onboard.",
-  body: "Tell us about your chamber and we'll walk you through onboarding — NACCIMA-recognized certificates, new revenue streams, and real value for your members, on a platform your chamber runs independently.",
-  ctaPrimary: { label: "Request Onboarding", href: "/contact" },
-  ctaSecondary: { label: "Talk to Our Team", href: "mailto:partnerships@chamberlink.ng" },
+  eyebrow: "READY TO APPLY",
+  headline: "Get your Solid Minerals Certificate of Origin.",
+  body: "Register for your free ChamberLink ID, then apply for your Certificate of Origin — reviewed and issued by NACCIMA.",
+  ctaPrimary: { label: "Apply for a Certificate", href: "/apply" },
+  ctaSecondary: { label: "Verify a Certificate", href: "/verify" },
 };
-
-export const ONBOARDING_EMAIL = "partnerships@chamberlink.ng";
 
 export const contactPage = {
   eyebrow: "REQUEST ONBOARDING",
@@ -254,22 +221,22 @@ export const NIGERIA_STATES = [
 
 export const footer = {
   description:
-    "Chamberlink onboards Nigeria's state chambers of commerce onto one platform, designed around NACCIMA's national Certificate of Origin mandate. Operated by Tradely LTD.",
+    "The official Certificate of Origin platform for Nigeria's Solid Minerals sector, backed by NACCIMA. Operated by Tradely LTD.",
   columns: [
     {
       title: "Platform",
       links: [
-        { label: "Membership & Governance", href: "/#platform" },
-        { label: "Trade Facilitation", href: "/#platform" },
-        { label: "Business Intelligence", href: "/#platform" },
-        { label: "Market Access", href: "/#platform" },
+        { label: "How It Works", href: "/#how-it-works" },
+        { label: "Verify a Certificate", href: "/verify" },
+        { label: "Apply for a Certificate", href: "/apply" },
+        { label: "Register", href: PORTAL_REGISTER_URL },
       ],
     },
     {
       title: "Company",
       links: [
-        { label: "NACCIMA Mandate", href: "/#mandate" },
-        { label: "Member Portal (Chamber Login)", href: PORTAL_URL },
+        { label: "For Chambers", href: "/for-chambers" },
+        { label: "Member Portal (Login)", href: PORTAL_LOGIN_URL },
         { label: "Contact", href: "/contact" },
       ],
     },

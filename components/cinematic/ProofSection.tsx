@@ -3,8 +3,9 @@
 import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { gsap } from "@/lib/motion/gsap";
-import { proof } from "@/lib/content/homeCopy";
+import { proof } from "@/lib/content/forChambersCopy";
 
+// Used on /for-chambers only.
 export default function ProofSection() {
   const rootRef = useRef<HTMLElement>(null);
 
@@ -26,7 +27,7 @@ export default function ProofSection() {
     <section ref={rootRef} id="proof" className="bg-muted px-6 py-28 md:px-12">
       <div className="mx-auto max-w-[1400px]">
         <div data-proof-reveal className="rounded-3xl border border-border bg-background p-10 md:p-16">
-          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-accent-ink">
+          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-gold">
             {proof.eyebrow}
           </span>
           <h2 className="max-w-3xl font-[family-name:var(--font-fraunces)] text-3xl font-medium leading-tight text-foreground md:text-5xl">
@@ -36,10 +37,7 @@ export default function ProofSection() {
             {proof.body}
           </p>
 
-          <div className="mt-8 flex flex-col gap-6 border-t border-border pt-8 md:flex-row md:items-center md:justify-between">
-            <p className="max-w-xl font-[family-name:var(--font-public-sans)] text-sm italic leading-relaxed text-muted-foreground">
-              {proof.partnerNote}
-            </p>
+          <div className="mt-8 flex justify-end border-t border-border pt-8">
             <a
               href={proof.cta.href}
               target="_blank"

@@ -2,17 +2,21 @@
 @import "tw-animate-css";
 
 @theme {
-  /* Chamberlink brand — "Trust & Authority": navy + gold, light-mode primary.
-     See lib/theme.ts for the JS-side tokens and full contrast notes. */
-  --color-primary: #023293; /* NACCIMA blue, verified */
+  /* Chamberlink brand — "Trust & Authority": navy + muted gold, light-mode
+     primary. Colors are locked to chamberlink_frontend/tailwind.config.ts
+     (the live member portal) — see lib/theme.ts for full contrast math. */
+  --color-primary: #023293; /* NACCIMA blue, verified against the portal */
+  --color-primary-hover: #0267bf;
   --color-primary-deep: #051937; /* dramatic dark-section background */
-  --color-accent: #c9932e; /* refined gold — CTAs / dark-surface accents only */
-  --color-accent-ink: #7a5619; /* WCAG-safe gold text/icon color for LIGHT surfaces */
-  --color-background: #fafaf8;
+  --color-gold: #795900; /* deep, muted olive-gold — safe directly on cream (6.14:1) */
+  --color-gold-hover: #5c4300;
+  --color-gold-tint: #b5a473; /* gold lightened 45% toward white — ONLY use for gold text/icons on dark navy */
+  --color-cream: #fdf8f3;
+  --color-background: #fdf8f3; /* alias: cream is the site's light background */
   --color-foreground: #0a1628;
-  --color-muted: #eef1f6;
+  --color-muted: #f2e9db; /* warm muted panel bg (not cool gray) */
   --color-muted-foreground: #3c4a5e;
-  --color-border: #dfe4ec;
+  --color-border: #bec9bf; /* matches the live member portal exactly */
   --color-destructive: #dc2626;
   --color-on-primary: #ffffff;
 
@@ -28,7 +32,7 @@ body {
 }
 
 ::selection {
-  background-color: var(--color-accent);
+  background-color: var(--color-gold-tint);
   color: var(--color-primary-deep);
 }
 

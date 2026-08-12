@@ -42,7 +42,7 @@ export default function CinematicHero() {
         <div>
           <span
             data-hero-eyebrow
-            className="mb-6 inline-block font-[family-name:var(--font-ibm-mono)] text-xs font-medium uppercase tracking-[0.2em] text-accent"
+            className="mb-6 inline-block font-[family-name:var(--font-ibm-mono)] text-xs font-medium uppercase tracking-[0.2em] text-gold-tint"
           >
             {hero.eyebrow}
           </span>
@@ -50,7 +50,7 @@ export default function CinematicHero() {
           <h1 className="max-w-2xl font-[family-name:var(--font-fraunces)] text-5xl font-medium leading-[1.05] tracking-tight text-white md:text-6xl">
             {headlineWords.map((word, i) => (
               <span key={i} data-hero-line className="inline-block overflow-hidden pr-3 pb-1 align-top">
-                <span className={`inline-block ${i >= italicFrom ? "italic text-accent" : ""}`}>{word}</span>
+                <span className={`inline-block ${i >= italicFrom ? "italic text-gold-tint" : ""}`}>{word}</span>
               </span>
             ))}
           </h1>
@@ -66,7 +66,7 @@ export default function CinematicHero() {
             <Link
               data-hero-cta
               href={hero.ctaPrimary.href}
-              className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-transparent bg-accent px-7 py-4 font-[family-name:var(--font-public-sans)] text-sm font-semibold leading-none text-primary-deep transition-transform hover:-translate-y-0.5"
+              className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-transparent bg-gold-tint px-7 py-4 font-[family-name:var(--font-public-sans)] text-sm font-semibold leading-none text-primary-deep transition-transform hover:-translate-y-0.5"
             >
               {hero.ctaPrimary.label}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -86,7 +86,7 @@ export default function CinematicHero() {
                 <div className="whitespace-nowrap font-[family-name:var(--font-ibm-mono)] text-2xl text-white md:text-3xl">
                   {stat.prefix}
                   {stat.value}
-                  {stat.suffix && <span className="text-accent">{stat.suffix}</span>}
+                  {stat.suffix && <span className="text-gold-tint">{stat.suffix}</span>}
                 </div>
                 <div className="mt-1 font-[family-name:var(--font-public-sans)] text-xs uppercase tracking-wider text-white/60">
                   {stat.label}

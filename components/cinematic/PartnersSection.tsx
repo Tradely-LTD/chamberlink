@@ -52,7 +52,7 @@ export default function PartnersSection() {
                   {logo.name}
                 </span>
               )}
-              <span className="mt-2 font-[family-name:var(--font-ibm-mono)] text-[9px] uppercase tracking-widest text-accent-ink">
+              <span className="mt-2 font-[family-name:var(--font-ibm-mono)] text-[9px] uppercase tracking-widest text-gold">
                 {logo.status}
               </span>
             </div>

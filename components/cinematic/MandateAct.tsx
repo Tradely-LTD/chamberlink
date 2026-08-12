@@ -3,9 +3,9 @@
 import { useEffect, useRef } from "react";
 import { ShieldCheck } from "lucide-react";
 import { gsap } from "@/lib/motion/gsap";
-import { mandate } from "@/lib/content/homeCopy";
+import { mandate } from "@/lib/content/forChambersCopy";
 
-// Dramatic dark section #2 of 2 — a solid (not canvas-driven) navy moment that
+// Used on /for-chambers only. A solid (not canvas-driven) navy moment that
 // gives the NACCIMA mandate explanation institutional weight without the GPU
 // cost of a second three.js scene.
 export default function MandateAct() {
@@ -40,14 +40,14 @@ export default function MandateAct() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -top-1/3 right-0 h-[600px] w-[600px] rounded-full opacity-20 blur-3xl"
-        style={{ background: "radial-gradient(circle, #C9932E 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, #b5a473 0%, transparent 70%)" }}
       />
 
       <div className="relative mx-auto w-full max-w-[1400px]">
         <div data-mandate-reveal className="mb-14 flex max-w-2xl items-start gap-4">
-          <ShieldCheck className="mt-1 h-8 w-8 shrink-0 text-accent" strokeWidth={1.5} />
+          <ShieldCheck className="mt-1 h-8 w-8 shrink-0 text-gold-tint" strokeWidth={1.5} />
           <div>
-            <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-accent">
+            <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-gold-tint">
               {mandate.eyebrow}
             </span>
             <h2 className="font-[family-name:var(--font-fraunces)] text-3xl font-medium leading-tight text-white md:text-5xl">
@@ -66,7 +66,7 @@ export default function MandateAct() {
               data-mandate-reveal
               className="rounded-2xl border border-white/12 bg-white/[0.04] p-6 backdrop-blur-sm"
             >
-              <span className="font-[family-name:var(--font-ibm-mono)] text-xs text-accent">
+              <span className="font-[family-name:var(--font-ibm-mono)] text-xs text-gold-tint">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="mt-3 font-[family-name:var(--font-fraunces)] text-xl text-white">{pillar.label}</h3>
