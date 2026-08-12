@@ -90,7 +90,7 @@ export default function TradeNetworkCanvas({ journeyRef, colorStops }: Props) {
     renderer.setSize(window.innerWidth, window.innerHeight);
     container.appendChild(renderer.domElement);
 
-    const inkColor = new THREE.Color(brand.ink);
+    const inkColor = new THREE.Color(brand.primaryDeep);
     scene.fog = new THREE.FogExp2(inkColor, 0.045);
 
     const networkGroup = new THREE.Group();
@@ -100,7 +100,7 @@ export default function TradeNetworkCanvas({ journeyRef, colorStops }: Props) {
     const glowTexture = makeGlowTexture();
 
     const nodeGeometry = new THREE.IcosahedronGeometry(0.16, 1);
-    const nodeMaterial = new THREE.MeshBasicMaterial({ color: colorways.emerald.bright });
+    const nodeMaterial = new THREE.MeshBasicMaterial({ color: colorways.mandate.bright });
     const nodeMesh = new THREE.InstancedMesh(nodeGeometry, nodeMaterial, nodes.length);
     const dummy = new THREE.Object3D();
     nodes.forEach((pos, i) => {
@@ -113,7 +113,7 @@ export default function TradeNetworkCanvas({ journeyRef, colorStops }: Props) {
     const sprites: THREE.Sprite[] = nodes.map((pos) => {
       const material = new THREE.SpriteMaterial({
         map: glowTexture,
-        color: colorways.emerald.bright,
+        color: colorways.mandate.bright,
         transparent: true,
         opacity: 0.55,
         blending: THREE.AdditiveBlending,
@@ -135,7 +135,7 @@ export default function TradeNetworkCanvas({ journeyRef, colorStops }: Props) {
       const points = curve.getPoints(24);
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
       const material = new THREE.LineBasicMaterial({
-        color: colorways.emerald.base,
+        color: colorways.mandate.base,
         transparent: true,
         opacity: 0.35,
       });

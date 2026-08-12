@@ -3,8 +3,9 @@
 import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { gsap } from "@/lib/motion/gsap";
-import { proof } from "@/lib/content/homeCopy";
+import { proof } from "@/lib/content/forChambersCopy";
 
+// Used on /for-chambers only.
 export default function ProofSection() {
   const rootRef = useRef<HTMLElement>(null);
 
@@ -23,28 +24,25 @@ export default function ProofSection() {
   }, []);
 
   return (
-    <section ref={rootRef} id="proof" className="bg-[#e7f0e3] px-6 py-28 md:px-12">
+    <section ref={rootRef} id="proof" className="bg-muted px-6 py-28 md:px-12">
       <div className="mx-auto max-w-[1400px]">
-        <div data-proof-reveal className="rounded-3xl border border-[#d9e5d3] bg-[#f2f6f0] p-10 md:p-16">
-          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-[#12503f]">
+        <div data-proof-reveal className="rounded-3xl border border-border bg-background p-10 md:p-16">
+          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-gold">
             {proof.eyebrow}
           </span>
-          <h2 className="max-w-3xl font-[family-name:var(--font-fraunces)] text-3xl font-medium leading-tight text-[#0f2318] md:text-5xl">
+          <h2 className="max-w-3xl font-[family-name:var(--font-fraunces)] text-3xl font-medium leading-tight text-foreground md:text-5xl">
             {proof.headline}
           </h2>
-          <p className="mt-6 max-w-2xl font-[family-name:var(--font-public-sans)] text-base leading-relaxed text-[#4c5c4e]">
+          <p className="mt-6 max-w-2xl font-[family-name:var(--font-public-sans)] text-base leading-relaxed text-muted-foreground">
             {proof.body}
           </p>
 
-          <div className="mt-8 flex flex-col gap-6 border-t border-[#d9e5d3] pt-8 md:flex-row md:items-center md:justify-between">
-            <p className="max-w-xl font-[family-name:var(--font-public-sans)] text-sm italic leading-relaxed text-[#4c5c4e]">
-              {proof.partnerNote}
-            </p>
+          <div className="mt-8 flex justify-end border-t border-border pt-8">
             <a
               href={proof.cta.href}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#12503f] px-6 py-3 font-[family-name:var(--font-public-sans)] text-sm font-semibold text-[#f2f6f0] transition-transform hover:-translate-y-0.5"
+              className="group inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full bg-primary px-6 py-3 font-[family-name:var(--font-public-sans)] text-sm font-semibold text-on-primary transition-transform hover:-translate-y-0.5"
             >
               {proof.cta.label}
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

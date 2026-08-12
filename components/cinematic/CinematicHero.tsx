@@ -30,6 +30,8 @@ export default function CinematicHero() {
   }, []);
 
   const headlineWords = hero.headline.split(" ");
+  // Warm the close of the headline with Fraunces italic, per brand type system.
+  const italicFrom = headlineWords.length - 2;
 
   return (
     <section
@@ -40,22 +42,22 @@ export default function CinematicHero() {
         <div>
           <span
             data-hero-eyebrow
-            className="mb-6 inline-block font-[family-name:var(--font-ibm-mono)] text-xs font-medium uppercase tracking-[0.2em] text-[#34c28d]"
+            className="mb-6 inline-block font-[family-name:var(--font-ibm-mono)] text-xs font-medium uppercase tracking-[0.2em] text-gold-tint"
           >
             {hero.eyebrow}
           </span>
 
-          <h1 className="max-w-2xl font-[family-name:var(--font-fraunces)] text-5xl font-medium leading-[1.05] tracking-tight text-[#f2f6f0] md:text-6xl">
+          <h1 className="max-w-2xl font-[family-name:var(--font-fraunces)] text-5xl font-medium leading-[1.05] tracking-tight text-white md:text-6xl">
             {headlineWords.map((word, i) => (
               <span key={i} data-hero-line className="inline-block overflow-hidden pr-3 pb-1 align-top">
-                <span className="inline-block">{word}</span>
+                <span className={`inline-block ${i >= italicFrom ? "italic text-gold-tint" : ""}`}>{word}</span>
               </span>
             ))}
           </h1>
 
           <p
             data-hero-sub
-            className="mt-8 max-w-xl font-[family-name:var(--font-public-sans)] text-lg leading-relaxed text-[#f2f6f0]/70 md:text-xl"
+            className="mt-8 max-w-xl font-[family-name:var(--font-public-sans)] text-lg leading-relaxed text-white/75 md:text-xl"
           >
             {hero.subhead}
           </p>
@@ -64,29 +66,29 @@ export default function CinematicHero() {
             <Link
               data-hero-cta
               href={hero.ctaPrimary.href}
-              className="inline-flex items-center gap-2 rounded-full border border-transparent bg-[#34c28d] px-7 py-4 font-[family-name:var(--font-public-sans)] text-sm font-semibold leading-none text-[#0a1f16] transition-transform hover:-translate-y-0.5"
+              className="group inline-flex cursor-pointer items-center gap-2 rounded-full border border-transparent bg-gold-tint px-7 py-4 font-[family-name:var(--font-public-sans)] text-sm font-semibold leading-none text-primary-deep transition-transform hover:-translate-y-0.5"
             >
               {hero.ctaPrimary.label}
-              <ArrowRight className="h-4 w-4 transition-transform" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <a
               data-hero-cta
               href={hero.ctaSecondary.href}
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-4 font-[family-name:var(--font-public-sans)] text-sm font-semibold leading-none text-[#f2f6f0] transition-colors hover:border-white/40"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/25 px-7 py-4 font-[family-name:var(--font-public-sans)] text-sm font-semibold leading-none text-white transition-colors hover:border-white/50"
             >
               {hero.ctaSecondary.label}
             </a>
           </div>
 
-          <div className="mt-20 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/10 pt-8 sm:grid-cols-4">
+          <div className="mt-20 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-white/15 pt-8 sm:grid-cols-4">
             {hero.stats.map((stat) => (
               <div key={stat.label} data-hero-stat>
-                <div className="whitespace-nowrap font-[family-name:var(--font-ibm-mono)] text-2xl text-[#f2f6f0] md:text-3xl">
+                <div className="whitespace-nowrap font-[family-name:var(--font-ibm-mono)] text-2xl text-white md:text-3xl">
                   {stat.prefix}
                   {stat.value}
-                  {stat.suffix && <span className="text-[#34c28d]">{stat.suffix}</span>}
+                  {stat.suffix && <span className="text-gold-tint">{stat.suffix}</span>}
                 </div>
-                <div className="mt-1 font-[family-name:var(--font-public-sans)] text-xs uppercase tracking-wider text-[#f2f6f0]/50">
+                <div className="mt-1 font-[family-name:var(--font-public-sans)] text-xs uppercase tracking-wider text-white/60">
                   {stat.label}
                 </div>
               </div>
@@ -97,7 +99,7 @@ export default function CinematicHero() {
         <HeroVisual />
       </div>
 
-      <div className="pointer-events-none absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[#f2f6f0]/50">
+      <div className="pointer-events-none absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-white/55">
         <span className="font-[family-name:var(--font-ibm-mono)] text-[10px] uppercase tracking-[0.2em]">
           {hero.scrollCue}
         </span>

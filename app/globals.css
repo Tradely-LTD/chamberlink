@@ -2,13 +2,23 @@
 @import "tw-animate-css";
 
 @theme {
-  /* Chamberlink brand — all-green system, see lib/theme.ts for the JS-side tokens */
-  --color-ink: #0a1f16;
-  --color-ink-deep: #06140d;
-  --color-emerald: #145c42;
-  --color-emerald-bright: #34c28d;
-  --color-paper: #f2f6f0;
-  --color-paper-deep: #e7f0e3;
+  /* Chamberlink brand — "Trust & Authority": navy + muted gold, light-mode
+     primary. Colors are locked to chamberlink_frontend/tailwind.config.ts
+     (the live member portal) — see lib/theme.ts for full contrast math. */
+  --color-primary: #023293; /* NACCIMA blue, verified against the portal */
+  --color-primary-hover: #0267bf;
+  --color-primary-deep: #051937; /* dramatic dark-section background */
+  --color-gold: #795900; /* deep, muted olive-gold — safe directly on cream (6.14:1) */
+  --color-gold-hover: #5c4300;
+  --color-gold-tint: #b5a473; /* gold lightened 45% toward white — ONLY use for gold text/icons on dark navy */
+  --color-cream: #fdf8f3;
+  --color-background: #fdf8f3; /* alias: cream is the site's light background */
+  --color-foreground: #0a1628;
+  --color-muted: #f2e9db; /* warm muted panel bg (not cool gray) */
+  --color-muted-foreground: #3c4a5e;
+  --color-border: #bec9bf; /* matches the live member portal exactly */
+  --color-destructive: #dc2626;
+  --color-on-primary: #ffffff;
 
   --font-fraunces: "Fraunces", Georgia, serif;
   --font-public-sans: "Public Sans", system-ui, sans-serif;
@@ -16,9 +26,14 @@
 }
 
 body {
-  background-color: var(--color-ink);
-  color: var(--color-paper);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-gold-tint);
+  color: var(--color-primary-deep);
 }
 
 @media (prefers-reduced-motion: reduce) {
