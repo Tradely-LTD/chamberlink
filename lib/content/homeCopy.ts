@@ -38,7 +38,8 @@ export const PORTAL_SSO_URL = `${PORTAL_URL}/sso`;
 // Public, unauthenticated backend endpoint used by /verify. Confirmed against
 // chamberlink_backend/src/modules/e-certificate/{route,controller,service}.ts:
 // GET /api/eco/verify/:certNumber -> { success, data: { certificateNumber,
-// exporterName, destinationCountry, hsCode, issuedAt, status, isValid } }
+// companyName, destinationCountry, solidMineralName, hsCode, issuedAt,
+// status, isValid } }
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL ?? "https://chamberlinkbackend-production.up.railway.app";
 

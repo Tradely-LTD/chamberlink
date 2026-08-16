@@ -3,12 +3,16 @@ import { API_BASE_URL } from "@/lib/content/homeCopy";
 /**
  * Shape confirmed against the real backend source, not guessed:
  * chamberlink_backend/src/modules/e-certificate/service.ts `publicVerify`
- * (select list) + controller.ts `publicVerify` (response envelope).
+ * (select list) + controller.ts `publicVerify` (response envelope). The
+ * select list uses `companyName`, not `exporterName` — a prior version of
+ * this type got that wrong, which silently rendered a blank exporter field
+ * (the `as CertificateData` cast below doesn't catch a wrong key at runtime).
  */
 export type CertificateData = {
   certificateNumber: string;
-  exporterName: string;
+  companyName: string;
   destinationCountry: string;
+  solidMineralName: string;
   hsCode: string;
   issuedAt: string;
   status: string;

@@ -37,7 +37,7 @@ export function VerifyValidCard({ data }: { data: CertificateData }) {
         </div>
         <div className={fieldClass}>
           <span className={labelClass}>Exporter</span>
-          <span className={valueClass}>{data.exporterName}</span>
+          <span className={valueClass}>{data.companyName}</span>
         </div>
         <div className={fieldClass}>
           <span className={labelClass}>Destination Country</span>

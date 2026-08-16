@@ -24,7 +24,8 @@ export function VerifyValidCard({ data }: { data: CertificateData }) {
       </div>
       <div className="certificate-lines" style={{ marginTop: 24 }}>
         <div><small>Certificate number</small><strong>{data.certificateNumber}</strong></div>
-        <div><small>Exporter</small><strong>{data.exporterName}</strong></div>
+        <div><small>Exporter</small><strong>{data.companyName}</strong></div>
+        <div><small>Mineral</small><strong>{data.solidMineralName}</strong></div>
         <div className="two-col">
           <div><small>Destination</small><strong>{data.destinationCountry}</strong></div>
           <div><small>HS Code</small><strong>{data.hsCode}</strong></div>
