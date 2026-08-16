@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import CorporateNavbar from "@/components/cinematic/CorporateNavbar";
-import CorporateFooter from "@/components/cinematic/CorporateFooter";
-import VerifySearchForm from "@/components/cinematic/VerifySearchForm";
-import { VerifyValidCard, VerifyNotFoundCard, VerifyErrorCard } from "@/components/cinematic/VerifyResultCard";
+import VerifyForm from "@/components/naccima/VerifyForm";
+import { VerifyValidCard, VerifyNotFoundCard, VerifyErrorCard } from "@/components/naccima/VerifyResult";
 import { verifyCertificate } from "@/lib/api/verifyCertificate";
+import "../../naccima-auth.css";
 
 type Props = { params: Promise<{ certNumber: string }> };
 
@@ -24,37 +23,30 @@ export default async function VerifyCertificatePage({ params }: Props) {
   const result = await verifyCertificate(certNumber);
 
   return (
-    <>
-      <CorporateNavbar />
-      <main className="min-h-dvh bg-background px-6 pb-24 pt-40 md:px-12 md:pt-48">
-        <div className="mx-auto max-w-2xl">
-          <Link
-            href="/verify"
-            className="inline-flex cursor-pointer items-center gap-1.5 font-[family-name:var(--font-public-sans)] text-sm text-muted-foreground transition-colors hover:text-primary"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            Verify another certificate
+    <div className="naccima-shell">
+      <div className="public-tool-page">
+        <div className="tool-top">
+          <Link href="/" className="brand-mark" aria-label="NACCIMA Chamberlink home">
+            <span className="brand-symbol"><img className="brand-logo" src="/naccima-seal.png" alt="NACCIMA" /></span>
+            <span><strong>NACCIMA</strong><em>Chamberlink</em></span>
           </Link>
+          <Link href="/verify" className="text-link"><ArrowLeft size={16} /> Verify another certificate</Link>
+        </div>
+        <div className="tool-card">
+          {result.ok ? (
+            <VerifyValidCard data={result.data} />
+          ) : result.notFound ? (
+            <VerifyNotFoundCard certNumber={certNumber} />
+          ) : (
+            <VerifyErrorCard message={result.message} />
+          )}
 
-          <div className="mt-6">
-            {result.ok ? (
-              <VerifyValidCard data={result.data} />
-            ) : result.notFound ? (
-              <VerifyNotFoundCard certNumber={certNumber} />
-            ) : (
-              <VerifyErrorCard message={result.message} />
-            )}
-          </div>
-
-          <div className="mt-10 rounded-2xl border border-border bg-white p-6">
-            <p className="mb-4 font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-wider text-muted-foreground">
-              Search a different certificate
-            </p>
-            <VerifySearchForm />
+          <div style={{ marginTop: 30, paddingTop: 22, borderTop: "1px solid #e7edf1" }}>
+            <div className="section-kicker">Search a different certificate</div>
+            <VerifyForm />
           </div>
         </div>
-      </main>
-      <CorporateFooter />
-    </>
+      </div>
+    </div>
   );
 }

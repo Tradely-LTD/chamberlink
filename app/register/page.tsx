@@ -72,8 +72,10 @@ export default function RegisterPage() {
       }
 
       // Hand off into the member portal already signed in — see /login/page.tsx
-      // for why the token travels in the URL fragment, not a query string.
-      window.location.href = `${PORTAL_SSO_URL}#rt=${encodeURIComponent(refreshToken)}`;
+      // for why the token travels in the URL fragment, not a query string, and
+      // what `from` is for.
+      const from = encodeURIComponent(window.location.origin);
+      window.location.href = `${PORTAL_SSO_URL}#rt=${encodeURIComponent(refreshToken)}&from=${from}`;
     } catch {
       setError("Couldn't reach the registration service. Please try again in a moment.");
     } finally {

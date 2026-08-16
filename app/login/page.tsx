@@ -38,10 +38,13 @@ export default function LoginPage() {
         return;
       }
 
-      // Hand off into the member portal already signed in. The refresh token
-      // travels in the URL fragment, which browsers never send to a server —
-      // chamberlink_frontend's /sso route picks it up client-side only.
-      window.location.href = `${PORTAL_SSO_URL}#rt=${encodeURIComponent(refreshToken)}`;
+      // Hand off into the member portal already signed in. Both values travel
+      // in the URL fragment, which browsers never send to a server —
+      // chamberlink_frontend's /sso route picks them up client-side only.
+      // `from` lets the portal send the user back here (not its own /login)
+      // when they log out, since they arrived from this site.
+      const from = encodeURIComponent(window.location.origin);
+      window.location.href = `${PORTAL_SSO_URL}#rt=${encodeURIComponent(refreshToken)}&from=${from}`;
     } catch {
       setError("Couldn't reach the sign-in service. Please try again in a moment.");
     } finally {

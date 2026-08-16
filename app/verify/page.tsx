@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { ShieldCheck } from "lucide-react";
-import CorporateNavbar from "@/components/cinematic/CorporateNavbar";
-import CorporateFooter from "@/components/cinematic/CorporateFooter";
-import VerifySearchForm from "@/components/cinematic/VerifySearchForm";
+import Link from "next/link";
+import { ArrowLeft, SearchCheck } from "lucide-react";
+import VerifyForm from "@/components/naccima/VerifyForm";
+import "../naccima-auth.css";
 
 export const metadata: Metadata = {
   title: "Verify a Certificate",
@@ -12,30 +12,26 @@ export const metadata: Metadata = {
 
 export default function VerifyPage() {
   return (
-    <>
-      <CorporateNavbar />
-      <main className="min-h-dvh bg-background px-6 pb-24 pt-40 md:px-12 md:pt-48">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
-            <ShieldCheck className="h-6 w-6 text-primary" strokeWidth={1.75} />
-          </div>
-          <span className="mb-4 block font-[family-name:var(--font-ibm-mono)] text-xs uppercase tracking-[0.2em] text-gold">
-            VERIFY A CERTIFICATE
-          </span>
-          <h1 className="font-[family-name:var(--font-fraunces)] text-4xl font-medium leading-tight text-foreground md:text-5xl">
-            Check a Certificate of Origin.
-          </h1>
-          <p className="mx-auto mt-5 max-w-lg font-[family-name:var(--font-public-sans)] text-base leading-relaxed text-muted-foreground">
+    <div className="naccima-shell">
+      <div className="public-tool-page">
+        <div className="tool-top">
+          <Link href="/" className="brand-mark" aria-label="NACCIMA Chamberlink home">
+            <span className="brand-symbol"><img className="brand-logo" src="/naccima-seal.png" alt="NACCIMA" /></span>
+            <span><strong>NACCIMA</strong><em>Chamberlink</em></span>
+          </Link>
+          <Link href="/" className="text-link"><ArrowLeft size={16} /> Back to Chamberlink</Link>
+        </div>
+        <div className="tool-card">
+          <div className="dialog-icon"><SearchCheck size={22} /></div>
+          <div className="section-kicker">Verify a certificate</div>
+          <h1>Check a Certificate of Origin.</h1>
+          <p>
             Enter the certificate number exactly as it appears on the document. Verification is free, instant, and
             doesn&apos;t require an account.
           </p>
-
-          <div className="mt-10 text-left">
-            <VerifySearchForm />
-          </div>
+          <VerifyForm />
         </div>
-      </main>
-      <CorporateFooter />
-    </>
+      </div>
+    </div>
   );
 }
