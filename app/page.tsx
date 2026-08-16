@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -13,15 +13,19 @@ import {
   ChevronRight,
   CircleCheck,
   FileCheck2,
+  FileText,
   Globe2,
+  GraduationCap,
   Landmark,
   LockKeyhole,
   Menu,
   Network,
   PlayCircle,
+  Route,
   SearchCheck,
   ShieldCheck,
   Sparkles,
+  UsersRound,
   X,
 } from "lucide-react";
 import "./naccima-auth.css";
@@ -34,13 +38,16 @@ const steps = [
 
 const requirements = ["CAC registration document", "NEPC export licence or evidence", "Commercial invoice", "Applicant signature", "Mining licence, where applicable", "Chamber membership ID, where applicable"];
 
-const services = [
-  { icon: Network, title: "Business networking", text: "Find credible buyers, suppliers, investors and value-chain partners." },
-  { icon: Globe2, title: "Trade missions & exhibitions", text: "Access curated trade events, missions and export corridors." },
-  { icon: Landmark, title: "Financing opportunities", text: "Discover investment-readiness and business-development pathways." },
-  { icon: Building2, title: "Policy representation", text: "Connect private-sector priorities to structured public–private dialogue." },
-  { icon: Sparkles, title: "Capacity building", text: "Build practical expertise in export readiness, compliance and documentation." },
-  { icon: SearchCheck, title: "Market intelligence", text: "Use sector insights and trade intelligence to make better decisions." },
+const chamberlinkServices = [
+  { icon: ShieldCheck, title: "e-Certificate of Origin", text: "Apply for a traceable Solid Minerals Certificate of Origin, monitor review and share a public verification link." },
+  { icon: FileText, title: "Trade documentation", text: "Generate branded commercial invoices, packing lists and export-ready records from one digital workspace." },
+  { icon: UsersRound, title: "Exporter profile visibility", text: "Build an export profile that helps qualified buyers, chambers and partners discover your business." },
+  { icon: GraduationCap, title: "Chamber e-learning", text: "Access practical courses, compliance guidance and learning content published by your chamber." },
+  { icon: Network, title: "Multi-chamber membership", text: "Connect multiple chamber memberships, manage IDs and use the services attached to each relationship." },
+  { icon: Globe2, title: "Trade fairs and missions", text: "Discover trade fairs, exhibitions and missions that connect Nigerian exporters to new markets." },
+  { icon: Route, title: "Trade corridors", text: "Follow priority trade corridors and understand the documents, partners and opportunities along the route." },
+  { icon: Landmark, title: "Market and policy intelligence", text: "Find business intelligence, investment pathways and structured representation for legitimate trade." },
+  { icon: Sparkles, title: "Business networking", text: "Connect with buyers, suppliers, processors and value-chain partners across the mineral economy." },
 ];
 
 const partners = ["Federal Ministry of Solid Minerals Development", "Nigerian Export Promotion Council", "Mining Cadastre Office", "Nigeria Customs Service", "Licensed mining companies", "Mineral processors"];
@@ -51,6 +58,26 @@ export default function Home() {
   const [verifyOpen, setVerifyOpen] = useState(false);
   const [certInput, setCertInput] = useState("");
 
+  // Subtle parallax on the mineral-operation photo as it scrolls through view.
+  useEffect(() => {
+    const band = document.querySelector<HTMLElement>(".mineral-visual-band");
+    const image = band?.querySelector<HTMLImageElement>("img");
+    if (!band || !image || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const rect = band.getBoundingClientRect();
+      const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+      const offset = (progress - 0.5) * 24;
+      image.style.transform = `translate3d(0, ${offset}px, 0) scale(1.06)`;
+    };
+    const onScroll = () => { if (!frame) frame = window.requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (frame) window.cancelAnimationFrame(frame); };
+  }, []);
+
   const runVerify = () => {
     const value = certInput.trim();
     if (!value) return;
@@ -59,7 +86,7 @@ export default function Home() {
   };
 
   return (
-    <div className="naccima-shell overflow-hidden">
+    <div className="naccima-shell overflow-x-hidden">
       <header className="site-header">
         <div className="container flex h-[78px] items-center justify-between">
           <a href="#top" className="brand-mark" aria-label="NACCIMA Chamberlink home">
@@ -98,10 +125,10 @@ export default function Home() {
           <div className="hero-grid container">
             <div className="hero-copy">
               <div className="eyebrow"><span className="eyebrow-dot" />NACCIMA digital trade infrastructure</div>
-              <h1>Streamline your export with <span>Chamberlink</span></h1>
-              <p className="hero-lede">A trusted digital path to your Solid Minerals Certificate of Origin. Submit with clarity, move through review with confidence and give buyers a certificate they can verify.</p>
+              <h1 className="hero-headline">Streamline your solid minerals export with <span>NACCIMA Chamberlink</span></h1>
+              <p className="hero-lede">One digital trade platform for Nigerian exporters and chambers: create export documents, build visibility, manage memberships, learn, join opportunities and obtain a Solid Minerals Certificate of Origin buyers can verify.</p>
               <div className="hero-actions">
-                <Link href="/register" className="primary-button">Start an application <ArrowRight size={17} /></Link>
+                <Link href="/register" className="primary-button">Apply for a Certificate <ArrowRight size={17} /></Link>
                 <button onClick={() => setVerifyOpen(true)} className="secondary-button"><PlayCircle size={18} /> Verify a certificate</button>
               </div>
               <div className="hero-trust">
@@ -130,7 +157,14 @@ export default function Home() {
           <div className="section-kicker">A clearer route to export</div>
           <div className="split-heading">
             <h2>When every document matters, <em>confidence matters too.</em></h2>
-            <p>Mineral exporters deserve a process that feels as credible as the products they take to market. NACCIMA Chamberlink brings application, review, issuance and verification into one considered digital experience.</p>
+            <p>Mineral exporters deserve more than a certificate form. Chamberlink brings documents, exporter visibility, chamber services, learning, opportunities and certificate verification into one considered digital trade experience.</p>
+          </div>
+          <div className="mineral-visual-band">
+            <img className="mineral-visual-image" src="/naccima-mineral-operation.webp" alt="Mineral processing machinery crushing and screening solid minerals at an open-pit operation" />
+            <div className="mineral-visual-caption">
+              <span>Solid minerals in motion</span>
+              <strong>From responsible processing to export-ready records.</strong>
+            </div>
           </div>
           <div className="problem-grid">
             <Card className="problem-card muted-card"><CardContent><span className="problem-number">01</span><h3>Disconnected paperwork</h3><p>Repeated submissions and scattered documents create avoidable delays for exporters and reviewers.</p></CardContent></Card>
@@ -171,11 +205,11 @@ export default function Home() {
 
         <section id="services" className="section container services-section">
           <div className="services-heading">
-            <div><div className="section-kicker">Beyond certification</div><h2>A stronger network<br /><em>for ambitious exporters.</em></h2></div>
-            <p>Chamberlink connects exporters and chambers to practical digital services that support the full journey from compliance to commercial opportunity, within the NACCIMA ecosystem.</p>
+            <div><div className="section-kicker">Chamberlink digital trade services</div><h2>More than a certificate.<br /><em>A platform for export growth.</em></h2></div>
+            <p>Chamberlink connects exporters and chambers to practical digital trade services—from branded documentation and exporter visibility to learning, memberships, trade fairs, missions and corridors—within the NACCIMA ecosystem.</p>
           </div>
           <div className="services-grid">
-            {services.map(({ icon: Icon, title, text }) => (
+            {chamberlinkServices.map(({ icon: Icon, title, text }) => (
               <div className="service-tile" key={title}>
                 <span className="service-icon"><Icon size={21} /></span>
                 <h3>{title}</h3>
@@ -183,6 +217,23 @@ export default function Home() {
                 <span className="tile-arrow"><ArrowRight size={16} /></span>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="section container material-story">
+          <div className="material-story-heading">
+            <div><div className="section-kicker">The material behind the record</div><h2>Quality you can<br /><em>trace and trade.</em></h2></div>
+            <p>From graded mineral lots to orderly loading, better records help legitimate Nigerian exports move with clarity.</p>
+          </div>
+          <div className="material-story-grid">
+            <figure>
+              <img src="/naccima-graded-minerals.webp" alt="Graded solid mineral stones prepared for export" />
+              <figcaption><span>01</span><strong>Graded mineral lots</strong></figcaption>
+            </figure>
+            <figure>
+              <img src="/naccima-ready-for-journey.jpg" alt="Orderly mineral logistics and loading area prepared for export" />
+              <figcaption><span>02</span><strong>Ready for the journey</strong></figcaption>
+            </figure>
           </div>
         </section>
 
@@ -247,7 +298,7 @@ export default function Home() {
           <div className="footer-secure"><LockKeyhole size={15} /> Secure digital trade records</div>
         </div>
         <div className="container footer-bottom">
-          <span>© 2026 NACCIMA Chamberlink. A digital trade initiative.</span>
+          <span>© 2026 NACCIMA Chamberlink. A digital trade initiative | Powered by Tradely LTD</span>
           <span>Built for Nigeria&apos;s export future.</span>
         </div>
       </footer>

@@ -73,7 +73,7 @@ export default function LoginPage() {
           <section className="auth-card">
             <div className="auth-card-icon"><ShieldCheck size={21} /></div>
             <h2>Sign in to Chamberlink</h2>
-            <p className="auth-card-lede">Use your Chamberlink email account to access your workspace.</p>
+            <p className="auth-card-lede">Sign in to apply for a Certificate of Origin, access chamber services or connect an existing chamber membership ID.</p>
             <div className="auth-form">
               <div>
                 <label>Email</label>
@@ -91,6 +91,12 @@ export default function LoginPage() {
             </div>
             <div className="auth-divider"><span>New to Chamberlink?</span></div>
             <Link href="/register" className="auth-signin button-like">Create a platform account</Link>
+            <div className="account-path-note">
+              <strong>With your Chamberlink ID, you can:</strong>
+              <span>Apply for a Certificate of Origin</span>
+              <span>Become a Member of a Chamber</span>
+              <span>Connect an Existing Membership ID</span>
+            </div>
             <p className="auth-security"><LockKeyhole size={13} /> Secure account access powered by NACCIMA Chamberlink</p>
           </section>
         </main>

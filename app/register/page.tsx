@@ -105,7 +105,7 @@ export default function RegisterPage() {
           <section className="auth-card">
             <div className="auth-card-icon"><ShieldCheck size={21} /></div>
             <h2>Create your Chamberlink account</h2>
-            <p className="auth-card-lede">Enter your platform details to get started. This is not Chamber membership registration.</p>
+            <p className="auth-card-lede">Create your free Chamberlink ID. This is not chamber membership—it gives you enough access to apply for your Solid Minerals Certificate of Origin and track it.</p>
             <div className="auth-form">
               <div>
                 <label>Full name</label>
@@ -130,6 +130,12 @@ export default function RegisterPage() {
             </div>
             <div className="auth-divider"><span>Already have an account?</span></div>
             <Link href="/login" className="auth-signin button-like">Sign in to Chamberlink</Link>
+            <div className="account-path-note">
+              <strong>After registration, you can:</strong>
+              <span>Apply for a Certificate of Origin</span>
+              <span>Become a Member of a Chamber</span>
+              <span>Connect an Existing Membership ID</span>
+            </div>
             <p className="auth-security"><LockKeyhole size={13} /> Secure account access powered by NACCIMA Chamberlink</p>
           </section>
         </main>
