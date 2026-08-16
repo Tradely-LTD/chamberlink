@@ -65,8 +65,21 @@ export default function RegisterPage() {
         return;
       }
 
-      const { accessToken, refreshToken } = body.data ?? {};
-      if (!refreshToken || !accessToken) {
+      // chamberlink_backend/src/modules/auth/service.ts `register()` only
+      // returns { userId, message } — no tokens (it gates on nothing, but
+      // doesn't sign the new account in either; the real member portal's own
+      // RegisterForm routes to an email-verification step for the same
+      // reason). Chain an immediate login with the same credentials to get
+      // real tokens for the handoff below — safe because, per that same
+      // file's login(), signing in is never gated on isEmailVerified.
+      const loginRes = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email, password: form.password }),
+      });
+      const loginBody = await loginRes.json().catch(() => null);
+      const { accessToken, refreshToken } = loginBody?.data ?? {};
+      if (!loginRes.ok || !refreshToken || !accessToken) {
         setError("Account created — sign in from the member portal to continue.");
         return;
       }
