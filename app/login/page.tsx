@@ -68,7 +68,7 @@ export default function LoginPage() {
             <h1>Return to your<br /><em>export desk.</em></h1>
             <p>Access your Chamberlink application workspace, compliance records and certificate status.</p>
             <div className="auth-benefits">
-              <div><CheckCircle2 size={17} /><span>Continue applications for Tradely LTD</span></div>
+              <div><CheckCircle2 size={17} /><span>Continue your Certificate of Origin applications</span></div>
               <div><CheckCircle2 size={17} /><span>Track review and certificate status</span></div>
               <div><CheckCircle2 size={17} /><span>Keep your export documents organised</span></div>
             </div>
