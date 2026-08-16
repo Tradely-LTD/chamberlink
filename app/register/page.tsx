@@ -87,7 +87,7 @@ export default function RegisterPage() {
     <div className="naccima-shell">
       <div className="auth-page">
         <div className="auth-brand-row">
-          <Link href="/" className="workspace-brand">
+          <Link href="/" className="brand-mark" aria-label="NACCIMA Chamberlink home">
             <span className="brand-symbol"><img className="brand-logo" src="/naccima-seal.png" alt="NACCIMA" /></span>
             <span><strong>NACCIMA</strong><em>Chamberlink</em></span>
           </Link>
