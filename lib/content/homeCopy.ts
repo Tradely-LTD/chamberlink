@@ -29,6 +29,12 @@ export const PORTAL_URL = "https://chamberlinkadmin.netlify.app";
 export const PORTAL_LOGIN_URL = `${PORTAL_URL}/login`; // confirmed real route: chamberlink_frontend/src/app/router.tsx
 export const PORTAL_REGISTER_URL = `${PORTAL_URL}/register`; // confirmed real route
 
+// SSO handoff after a successful /login or /register on this site: the refresh
+// token travels in the URL fragment (never sent to any server, unlike a query
+// string) so chamberlink_frontend/src/pages/SsoHandoffPage.tsx can pick it up
+// client-side, store it, and land the user signed in on their dashboard.
+export const PORTAL_SSO_URL = `${PORTAL_URL}/sso`;
+
 // Public, unauthenticated backend endpoint used by /verify. Confirmed against
 // chamberlink_backend/src/modules/e-certificate/{route,controller,service}.ts:
 // GET /api/eco/verify/:certNumber -> { success, data: { certificateNumber,
