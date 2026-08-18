@@ -304,22 +304,55 @@ export default function Home() {
       </footer>
 
       <Dialog open={verifyOpen} onOpenChange={setVerifyOpen}>
-        <DialogContent className="verify-dialog">
-          <DialogHeader>
-            <div className="dialog-icon"><SearchCheck size={22} /></div>
-            <DialogTitle>Verify an e-Certificate</DialogTitle>
-            <DialogDescription>Enter a certificate number or verification code to check an issued certificate.</DialogDescription>
-          </DialogHeader>
-          <div className="verify-field">
-            <input
-              placeholder="e.g. NAC-2026-004821"
-              value={certInput}
-              onChange={(e) => setCertInput(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && runVerify()}
-            />
-            <Button onClick={runVerify} className="primary-button">Search <SearchCheck size={16} /></Button>
+        {/*
+          Radix Dialog portals to document.body, OUTSIDE the .naccima-shell
+          wrapper this whole page renders inside — so the descendant selector
+          this used to rely on (.naccima-shell .verify-dialog, .naccima-shell
+          .primary-button, and even .naccima-shell's own font-family) never
+          matched here at all. That's why this modal looked like a bare
+          shadcn default instead of the rest of the page: it was one. Styled
+          directly with the landing page's actual palette/fonts below instead
+          of depending on an ancestor class that can't reach it.
+        */}
+        <DialogContent className="w-full sm:max-w-md rounded-3xl border border-white/60 bg-white/70 p-0 shadow-[0_35px_90px_-25px_rgba(2,103,191,0.45)] overflow-hidden font-[Manrope] backdrop-blur-2xl">
+          {/* Soft color glow blobs — clipped by overflow-hidden above, purely decorative */}
+          <div className="pointer-events-none absolute -top-20 -right-16 h-56 w-56 rounded-full bg-[#028853]/20 blur-3xl" aria-hidden="true" />
+          <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-[#0267bf]/20 blur-3xl" aria-hidden="true" />
+
+          <div className="relative p-7">
+            <DialogHeader>
+              <div className="h-12 w-12 rounded-2xl bg-gradient-to-br from-[#0267bf] to-[#028853] text-white flex items-center justify-center shadow-[0_10px_25px_-8px_rgba(2,103,191,0.6)]">
+                <SearchCheck size={22} />
+              </div>
+              <DialogTitle className="font-['Playfair_Display'] italic text-2xl text-[#132238] mt-4">
+                Verify an e-Certificate
+              </DialogTitle>
+              <DialogDescription className="text-[#627085] text-sm leading-relaxed">
+                Enter a certificate number or verification code to check an issued certificate.
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="flex gap-2.5 mt-6">
+              <input
+                placeholder="e.g. NAC-2026-004821"
+                value={certInput}
+                onChange={(e) => setCertInput(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && runVerify()}
+                className="flex-1 min-w-0 rounded-xl border border-[#dfe6ee] bg-white/80 px-4 py-3 text-sm text-[#132238] placeholder:text-[#94a3b8] outline-none focus:border-[#0267bf] focus:ring-2 focus:ring-[#0267bf]/15 transition"
+              />
+              <Button
+                onClick={runVerify}
+                className="rounded-xl bg-gradient-to-br from-[#0267bf] to-[#028853] text-white font-bold px-5 shadow-[0_10px_25px_-8px_rgba(2,103,191,0.5)] hover:shadow-[0_14px_30px_-8px_rgba(2,103,191,0.6)] hover:-translate-y-0.5 transition-all"
+              >
+                Search <SearchCheck size={16} />
+              </Button>
+            </div>
+
+            <p className="flex items-center gap-1.5 mt-5 text-[11px] text-[#627085]">
+              <LockKeyhole size={13} className="text-[#00711F]" />
+              Public verification only displays approved certificate fields.
+            </p>
           </div>
-          <p className="dialog-note"><LockKeyhole size={13} /> Public verification only displays approved certificate fields.</p>
         </DialogContent>
       </Dialog>
     </div>

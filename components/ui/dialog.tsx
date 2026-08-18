@@ -79,7 +79,10 @@ function DialogOverlay({
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       className={cn(
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
+        // bg-black/50 was the plain shadcn default — bumped to a navy tint +
+        // blur to match the rest of the (currently sole) consumer of this
+        // component, the verify-certificate modal on the marketing homepage.
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-[#0b1a2b]/60 backdrop-blur-sm",
         className
       )}
       {...props}
