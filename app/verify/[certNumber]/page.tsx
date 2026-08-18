@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import VerifyForm from "@/components/naccima/VerifyForm";
+import VerifyAnotherCertificate from "@/components/naccima/VerifyAnotherCertificate";
 import { VerifyValidCard, VerifyNotFoundCard, VerifyErrorCard } from "@/components/naccima/VerifyResult";
 import { verifyCertificate } from "@/lib/api/verifyCertificate";
 import "../../naccima-auth.css";
@@ -30,7 +30,7 @@ export default async function VerifyCertificatePage({ params }: Props) {
             <span className="brand-symbol"><img className="brand-logo" src="/naccima-seal.png" alt="NACCIMA" /></span>
             <span><strong>NACCIMA</strong><em>Chamberlink</em></span>
           </Link>
-          <Link href="/verify" className="text-link"><ArrowLeft size={16} /> Verify another certificate</Link>
+          <VerifyAnotherCertificate />
         </div>
         <div className="tool-card">
           {result.ok ? (
