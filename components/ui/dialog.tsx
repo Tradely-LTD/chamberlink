@@ -97,9 +97,19 @@ function DialogContent({
   children,
   showCloseButton = true,
   onEscapeKeyDown,
+  container,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean;
+  /**
+   * Radix portals to document.body by default, which escapes any ancestor
+   * class-scoped stylesheet (e.g. .naccima-shell's descendant selectors and
+   * font-family) — the verify-certificate modal on the homepage learned this
+   * the hard way. Pass a ref'd element still inside that scope (see
+   * VerifyAnotherCertificate for the pattern) to keep the portaled content
+   * themed correctly. Omit for dialogs that don't need page-scoped styling.
+   */
+  container?: HTMLElement | null;
 }) {
   const { isComposing } = useDialogComposition();
 
@@ -122,7 +132,7 @@ function DialogContent({
   );
 
   return (
-    <DialogPortal data-slot="dialog-portal">
+    <DialogPortal data-slot="dialog-portal" container={container}>
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot="dialog-content"
